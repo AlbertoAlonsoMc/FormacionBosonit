@@ -1,5 +1,10 @@
-package com.example.bosonit.Probando.Joins.Profesor;
+package com.example.bosonit.Probando.Joins.Profesor.Application;
 
+import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorInputDTO;
+import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorOutputDTO;
+import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorPersonaOutputDTO;
+import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Repo.ProfesorRepository;
+import com.example.bosonit.Probando.Joins.Profesor.Domain.Profesor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

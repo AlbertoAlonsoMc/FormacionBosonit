@@ -1,13 +1,9 @@
-package com.example.bosonit.Probando.Joins.Profesor;
+package com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto;
 
-import com.example.bosonit.Probando.Joins.Persona.Persona;
-import com.example.bosonit.Probando.Joins.Persona.PersonaInputDTO;
+import com.example.bosonit.Probando.Joins.Profesor.Domain.Profesor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor

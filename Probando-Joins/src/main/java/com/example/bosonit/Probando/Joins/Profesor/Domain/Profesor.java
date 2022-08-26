@@ -1,6 +1,7 @@
-package com.example.bosonit.Probando.Joins.Profesor;
+package com.example.bosonit.Probando.Joins.Profesor.Domain;
 
 import com.example.bosonit.Probando.Joins.Persona.Persona;
+import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorPersonaOutputDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Profesor {
     @Column(name = "Rama")
     private String rama;
 
-    @Column(name = "Id")
+    @Column(name = "Activo")
     private boolean activo;
 
     //private Set<Asignatura> asignaturas;

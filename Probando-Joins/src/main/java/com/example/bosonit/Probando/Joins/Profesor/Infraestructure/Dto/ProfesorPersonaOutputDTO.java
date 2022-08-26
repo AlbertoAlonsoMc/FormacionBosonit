@@ -1,4 +1,4 @@
-package com.example.bosonit.Probando.Joins.Profesor;
+package com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto;
 
 import com.example.bosonit.Probando.Joins.Persona.Persona;
 import lombok.AllArgsConstructor;
