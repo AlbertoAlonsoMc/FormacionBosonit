@@ -1,6 +1,7 @@
 package com.example.bosonit.Probando.Joins.Profesor;
 
 import com.example.bosonit.Probando.Joins.Persona.Persona;
+import com.example.bosonit.Probando.Joins.Persona.PersonaInputDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,16 +13,13 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProfesorInputDTO {
-    @NotBlank
     private String rama;
 
-    @NotNull
     private boolean activo;
-
-    @NotBlank
-    private Persona persona;
+    
+    private PersonaInputDTO personaInputDTO;
 
     public Profesor toProfesor() {
-        return new Profesor(rama, activo, persona);
+        return new Profesor(rama, activo, personaInputDTO.toPersona());
     }
 }

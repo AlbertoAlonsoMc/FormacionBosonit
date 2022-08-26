@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,4 +24,7 @@ public class Persona {
 
     @Column(name = "Edad")
     private int edad;
+
+    public Persona(String nombre, int edad) {
+    }
 }
