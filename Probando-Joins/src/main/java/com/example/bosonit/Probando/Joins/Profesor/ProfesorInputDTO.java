@@ -16,10 +16,13 @@ public class ProfesorInputDTO {
     private String rama;
 
     private boolean activo;
-    
-    private PersonaInputDTO personaInputDTO;
+
+    private String nombre;
+
+    private int edad;
+    //private PersonaInputDTO personaInputDTO;
 
     public Profesor toProfesor() {
-        return new Profesor(rama, activo, personaInputDTO.toPersona());
+        return new Profesor(rama, activo, nombre, edad);
     }
 }

@@ -14,7 +14,7 @@ public class ControllerProfesor {
     ProfesorService profesorService;
 
     @PostMapping("/profesor/addProfesor")
-    public void addProfesor(ProfesorInputDTO profesorInputDTO) {
-        profesorService.addProfesor(profesorInputDTO);
+    public ProfesorPersonaOutputDTO addProfesor(ProfesorInputDTO profesorInputDTO) {
+        return profesorService.addProfesor(profesorInputDTO);
     }
 }

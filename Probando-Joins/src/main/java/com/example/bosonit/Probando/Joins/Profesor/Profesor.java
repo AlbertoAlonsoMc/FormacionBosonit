@@ -29,7 +29,10 @@ public class Profesor {
     @JoinColumn(name = "ID_Persona")
     private Persona persona;
 
-    public Profesor(String rama, boolean activo, Persona persona) {
+    public Profesor(String rama, boolean activo, String nombre, int edad) {
+        persona = new Persona();
+        persona.setNombre(nombre);
+        persona.setEdad(edad);
     }
 
     public ProfesorPersonaOutputDTO toProfesorPersonaOutputDTO() {
