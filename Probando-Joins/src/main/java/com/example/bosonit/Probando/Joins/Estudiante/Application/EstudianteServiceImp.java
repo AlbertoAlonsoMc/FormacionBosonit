@@ -38,7 +38,7 @@ public class EstudianteServiceImp implements EstudianteService {
 
     @Override
     public void deleteEstudiante(int id) {
-        
+        estudianteRepository.deleteById(id);
     }
 
 }

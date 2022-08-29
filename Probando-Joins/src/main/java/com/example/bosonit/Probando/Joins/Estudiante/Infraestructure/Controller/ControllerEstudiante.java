@@ -7,20 +7,25 @@ import com.example.bosonit.Probando.Joins.Profesor.Application.ProfesorService;
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorInputDTO;
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorPersonaOutputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
+@RequestMapping("estudiante")
 public class ControllerEstudiante {
 
     @Autowired
     EstudianteService estudianteService;
 
-    @PostMapping("/profesor/addEstudiante")
+    @PostMapping("addEstudiante")
     public EstudiantePersonaOutputDTO addEstudiante(@RequestBody @Valid EstudianteInputDTO estudianteInputDTO) {
         return estudianteService.addEstudiante(estudianteInputDTO);
+    }
+
+    @DeleteMapping("deleteEstudiante/{id}")
+    public String deleteProfesor(@PathVariable int id) {
+        estudianteService.deleteEstudiante(id);
+        return "Se ha eliminado al estudiante y a la persona asociada";
     }
 }
