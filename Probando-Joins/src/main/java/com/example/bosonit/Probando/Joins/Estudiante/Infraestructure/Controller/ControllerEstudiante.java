@@ -24,7 +24,7 @@ public class ControllerEstudiante {
     }
 
     @DeleteMapping("deleteEstudiante/{id}")
-    public String deleteProfesor(@PathVariable int id) {
+    public String deleteEstudiante(@PathVariable int id) {
         estudianteService.deleteEstudiante(id);
         return "Se ha eliminado al estudiante y a la persona asociada";
     }
