@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 public class ControllerProfesor {
 
@@ -15,7 +17,7 @@ public class ControllerProfesor {
     ProfesorService profesorService;
 
     @PostMapping("/profesor/addProfesor")
-    public ProfesorPersonaOutputDTO addProfesor(@RequestBody ProfesorInputDTO profesorInputDTO) {
+    public ProfesorPersonaOutputDTO addProfesor(@RequestBody @Valid ProfesorInputDTO profesorInputDTO) {
         return profesorService.addProfesor(profesorInputDTO);
     }
 }
