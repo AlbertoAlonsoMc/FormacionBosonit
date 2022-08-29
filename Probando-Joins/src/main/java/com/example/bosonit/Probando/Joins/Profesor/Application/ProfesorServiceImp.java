@@ -22,12 +22,14 @@ public class ProfesorServiceImp implements ProfesorService {
 
     @Override
     public ProfesorOutputDTO getProfesor(int id) {
-        return null;
+        Profesor profesor = profesorRepository.findById(id).orElseThrow();
+        return profesor.toProfesorOutputDTO();
     }
 
     @Override
     public ProfesorPersonaOutputDTO getProfesorPersona(int id) {
-        return null;
+        Profesor profesor = profesorRepository.findById(id).orElseThrow();
+        return profesor.toProfesorPersonaOutputDTO();
     }
 
     @Override

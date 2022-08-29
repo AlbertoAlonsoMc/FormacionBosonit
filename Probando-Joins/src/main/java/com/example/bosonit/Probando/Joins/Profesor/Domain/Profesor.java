@@ -1,6 +1,7 @@
 package com.example.bosonit.Probando.Joins.Profesor.Domain;
 
 import com.example.bosonit.Probando.Joins.Persona.Persona;
+import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorOutputDTO;
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorPersonaOutputDTO;
 import lombok.*;
 
@@ -40,5 +41,9 @@ public class Profesor {
 
     public ProfesorPersonaOutputDTO toProfesorPersonaOutputDTO() {
         return new ProfesorPersonaOutputDTO(id, rama, activo, persona);
+    }
+
+    public ProfesorOutputDTO toProfesorOutputDTO() {
+        return new ProfesorOutputDTO(id, rama, activo);
     }
 }
