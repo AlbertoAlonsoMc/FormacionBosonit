@@ -1,5 +1,6 @@
 package com.example.bosonit.Probando.Joins.Estudiante.Domain;
 
+import com.example.bosonit.Probando.Joins.Estudiante.Infraestructure.Dto.EstudianteOutputDTO;
 import com.example.bosonit.Probando.Joins.Estudiante.Infraestructure.Dto.EstudiantePersonaOutputDTO;
 import com.example.bosonit.Probando.Joins.Persona.Persona;
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorPersonaOutputDTO;
@@ -34,6 +35,13 @@ public class Estudiante {
     }
 
     public EstudiantePersonaOutputDTO toEstudiantePersonaOutputDTO() {
-        return new EstudiantePersonaOutputDTO(id, asignatura, persona);
+        EstudiantePersonaOutputDTO estudiantePersonaOutputDTO = new EstudiantePersonaOutputDTO(persona);
+        estudiantePersonaOutputDTO.setId(id);
+        estudiantePersonaOutputDTO.setAsignatura(asignatura);
+        return estudiantePersonaOutputDTO;
+    }
+
+    public EstudianteOutputDTO toEstudianteOutputDTO() {
+        return new EstudianteOutputDTO(id, asignatura);
     }
 }

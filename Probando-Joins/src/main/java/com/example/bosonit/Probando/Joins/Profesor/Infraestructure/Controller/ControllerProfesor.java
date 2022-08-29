@@ -28,7 +28,7 @@ public class ControllerProfesor {
     }
 
     @GetMapping("getProfesor/{id}")
-    public Object getProfesor(@PathVariable int id, @RequestParam(required = false, defaultValue = "simple") String outputType) {
+    public ProfesorOutputDTO getProfesor(@PathVariable int id, @RequestParam(required = false, defaultValue = "simple") String outputType) {
         return switch (outputType) {
             case "full" -> profesorService.getProfesorPersona(id);
             default -> profesorService.getProfesor(id);

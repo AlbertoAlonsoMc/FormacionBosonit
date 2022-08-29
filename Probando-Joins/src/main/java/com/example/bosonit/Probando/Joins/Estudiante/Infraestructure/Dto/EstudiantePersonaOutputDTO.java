@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EstudiantePersonaOutputDTO {
-    private int id;
-    private String asignatura;
+public class EstudiantePersonaOutputDTO extends EstudianteOutputDTO{
     private Persona persona;
 }

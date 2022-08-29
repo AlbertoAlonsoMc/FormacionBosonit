@@ -28,12 +28,16 @@ public class EstudianteServiceImp implements EstudianteService {
 
     @Override
     public EstudianteOutputDTO getEstudiante(int id) {
-        return null;
+        Estudiante estudiante = estudianteRepository.findById(id).orElseThrow();
+        return estudiante.toEstudianteOutputDTO();
+
     }
 
     @Override
     public EstudiantePersonaOutputDTO getEstudiantePersona(int id) {
-        return null;
+        //Estudiante estudiante = estudianteRepository.findById(id).orElseThrow();
+        //return estudiante.toEstudiantePersonaOutputDTO();
+        return estudianteRepository.findById(id).orElseThrow().toEstudiantePersonaOutputDTO();
     }
 
     @Override

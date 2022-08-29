@@ -40,7 +40,11 @@ public class Profesor {
     }
 
     public ProfesorPersonaOutputDTO toProfesorPersonaOutputDTO() {
-        return new ProfesorPersonaOutputDTO(id, rama, activo, persona);
+        ProfesorPersonaOutputDTO profesorPersonaOutputDTO = new ProfesorPersonaOutputDTO(persona);
+        profesorPersonaOutputDTO.setId(id);
+        profesorPersonaOutputDTO.setRama(rama);
+        profesorPersonaOutputDTO.setActivo(activo);
+        return profesorPersonaOutputDTO;
     }
 
     public ProfesorOutputDTO toProfesorOutputDTO() {
