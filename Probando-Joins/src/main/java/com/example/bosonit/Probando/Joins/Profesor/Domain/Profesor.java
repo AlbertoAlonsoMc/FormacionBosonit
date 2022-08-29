@@ -31,6 +31,8 @@ public class Profesor {
     private Persona persona;
 
     public Profesor(String rama, boolean activo, String nombre, int edad) {
+        this.rama = rama;
+        this.activo = activo;
         persona = new Persona();
         persona.setNombre(nombre);
         persona.setEdad(edad);
