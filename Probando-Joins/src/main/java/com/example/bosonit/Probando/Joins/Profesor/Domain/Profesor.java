@@ -1,11 +1,15 @@
 package com.example.bosonit.Probando.Joins.Profesor.Domain;
 
+import com.example.bosonit.Probando.Joins.Asignatura.Domain.Asignatura;
+import com.example.bosonit.Probando.Joins.Asignatura.Infraestructure.Repo.AsignaturaRepository;
 import com.example.bosonit.Probando.Joins.Persona.Persona;
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorOutputDTO;
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorPersonaOutputDTO;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,7 +29,9 @@ public class Profesor {
     @Column(name = "Activo")
     private boolean activo;
 
-    //private Set<Asignatura> asignaturas;
+    @OneToOne
+    @JoinColumn(name = "ID_Asignatura")
+    private Asignatura asignatura;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_Persona")
@@ -37,6 +43,7 @@ public class Profesor {
         persona = new Persona();
         persona.setNombre(nombre);
         persona.setEdad(edad);
+        //asignatura.setProfesor(this);
     }
 
     public ProfesorPersonaOutputDTO toProfesorPersonaOutputDTO() {
@@ -44,10 +51,12 @@ public class Profesor {
         profesorPersonaOutputDTO.setId(id);
         profesorPersonaOutputDTO.setRama(rama);
         profesorPersonaOutputDTO.setActivo(activo);
+        profesorPersonaOutputDTO.setNombre_asignatura(asignatura.getNombre());
         return profesorPersonaOutputDTO;
     }
 
     public ProfesorOutputDTO toProfesorOutputDTO() {
-        return new ProfesorOutputDTO(id, rama, activo);
+        asignatura.setProfesor(this);
+        return new ProfesorOutputDTO(id, rama, activo, asignatura.getNombre());
     }
 }
