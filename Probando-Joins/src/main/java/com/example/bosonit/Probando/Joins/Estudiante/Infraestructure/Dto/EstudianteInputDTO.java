@@ -20,10 +20,7 @@ public class EstudianteInputDTO {
     @NotNull
     private int edad;
 
-    @NotBlank
-    private String asignatura;
-
     public Estudiante toEstudiante() {
-        return new Estudiante(nombre, edad, asignatura);
+        return new Estudiante(nombre, edad);
     }
 }

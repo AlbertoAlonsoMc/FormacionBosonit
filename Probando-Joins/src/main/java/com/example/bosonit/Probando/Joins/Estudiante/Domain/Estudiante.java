@@ -1,5 +1,6 @@
 package com.example.bosonit.Probando.Joins.Estudiante.Domain;
 
+import com.example.bosonit.Probando.Joins.Asignatura.Domain.Asignatura;
 import com.example.bosonit.Probando.Joins.Estudiante.Infraestructure.Dto.EstudianteOutputDTO;
 import com.example.bosonit.Probando.Joins.Estudiante.Infraestructure.Dto.EstudiantePersonaOutputDTO;
 import com.example.bosonit.Probando.Joins.Persona.Persona;
@@ -7,6 +8,7 @@ import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorP
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,15 +22,17 @@ public class Estudiante {
     @Column(name = "ID_Estudiante")
     private int id;
 
-    //private Set<Asignatura> asignaturas;
-    private String asignatura;
+    @ManyToMany
+    @JoinTable(name = "estudiante_asignatura",
+            joinColumns = {@JoinColumn(name = "ID_Estudiante")},
+            inverseJoinColumns = {@JoinColumn(name = "ID_Asignatura")})
+    private List<Asignatura> asignaturas;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_Persona")
     private Persona persona;
 
-    public Estudiante(String nombre, int edad, String asignatura) {
-        this.asignatura = asignatura;
+    public Estudiante(String nombre, int edad) {
         persona = new Persona();
         persona.setNombre(nombre);
         persona.setEdad(edad);
@@ -37,11 +41,10 @@ public class Estudiante {
     public EstudiantePersonaOutputDTO toEstudiantePersonaOutputDTO() {
         EstudiantePersonaOutputDTO estudiantePersonaOutputDTO = new EstudiantePersonaOutputDTO(persona);
         estudiantePersonaOutputDTO.setId(id);
-        estudiantePersonaOutputDTO.setAsignatura(asignatura);
         return estudiantePersonaOutputDTO;
     }
 
     public EstudianteOutputDTO toEstudianteOutputDTO() {
-        return new EstudianteOutputDTO(id, asignatura);
+        return new EstudianteOutputDTO(id);
     }
 }
