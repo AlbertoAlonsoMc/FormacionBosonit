@@ -29,7 +29,7 @@ public class Profesor {
     @Column(name = "Activo")
     private boolean activo;
 
-    @OneToOne(cascade = CascadeType.DETACH)
+    @OneToOne(mappedBy = "profesor", cascade = CascadeType.DETACH)
     @JoinColumn(name = "ID_Asignatura")
     private Asignatura asignatura;
 

@@ -7,6 +7,8 @@ import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorI
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorOutputDTO;
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorPersonaOutputDTO;
 
+import java.util.List;
+
 public interface EstudianteService {
 
     EstudiantePersonaOutputDTO addEstudiante(EstudianteInputDTO estudianteInputDTO);
@@ -14,6 +16,8 @@ public interface EstudianteService {
     EstudianteOutputDTO getEstudiante(int id);
 
     EstudiantePersonaOutputDTO getEstudiantePersona(int id);
+
+    List<EstudiantePersonaOutputDTO> getAll();
 
     void deleteEstudiante(int id);
 }

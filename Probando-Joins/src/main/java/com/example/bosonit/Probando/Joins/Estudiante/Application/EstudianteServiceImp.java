@@ -14,6 +14,8 @@ import com.example.bosonit.Probando.Joins.Profesor.Domain.Profesor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EstudianteServiceImp implements EstudianteService {
     @Autowired
@@ -38,6 +40,11 @@ public class EstudianteServiceImp implements EstudianteService {
         //Estudiante estudiante = estudianteRepository.findById(id).orElseThrow();
         //return estudiante.toEstudiantePersonaOutputDTO();
         return estudianteRepository.findById(id).orElseThrow().toEstudiantePersonaOutputDTO();
+    }
+
+    @Override
+    public List<EstudiantePersonaOutputDTO> getAll() {
+        return estudianteRepository.findAll().stream().map(Estudiante::toEstudiantePersonaOutputDTO).toList();
     }
 
     @Override
