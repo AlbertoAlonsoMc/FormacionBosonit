@@ -1,15 +1,15 @@
 package com.example.bosonit.Probando.Joins.Profesor.Domain;
 
 import com.example.bosonit.Probando.Joins.Asignatura.Domain.Asignatura;
-import com.example.bosonit.Probando.Joins.Asignatura.Infraestructure.Repo.AsignaturaRepository;
 import com.example.bosonit.Probando.Joins.Persona.Persona;
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorOutputDTO;
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorPersonaOutputDTO;
-import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -29,7 +29,7 @@ public class Profesor {
     @Column(name = "Activo")
     private boolean activo;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "ID_Asignatura")
     private Asignatura asignatura;
 

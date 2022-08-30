@@ -1,5 +1,6 @@
 package com.example.bosonit.Probando.Joins.Profesor.Application;
 
+import com.example.bosonit.Probando.Joins.Asignatura.Domain.Asignatura;
 import com.example.bosonit.Probando.Joins.Asignatura.Infraestructure.Repo.AsignaturaRepository;
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorInputDTO;
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorOutputDTO;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProfesorServiceImp implements ProfesorService {
@@ -48,6 +50,10 @@ public class ProfesorServiceImp implements ProfesorService {
 
     @Override
     public void deleteProfesor(int id) {
+        Optional<Profesor> profesor = profesorRepository.findById(id);
+        Optional<Asignatura> asignatura = asignaturaRepository.findById(profesor.orElseThrow().getAsignatura().getId());
+        asignatura.orElseThrow().setProfesor(null);
+        asignaturaRepository.save(asignatura.orElseThrow());
         profesorRepository.deleteById(id);
     }
 }
