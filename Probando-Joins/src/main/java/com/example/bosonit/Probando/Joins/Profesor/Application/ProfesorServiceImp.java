@@ -42,8 +42,8 @@ public class ProfesorServiceImp implements ProfesorService {
     }
 
     @Override
-    public List<Profesor> getAll() {
-        return profesorRepository.findAll();
+    public List<ProfesorPersonaOutputDTO> getAll() {
+        return profesorRepository.findAll().stream().map(Profesor::toProfesorPersonaOutputDTO).toList();
     }
 
     @Override

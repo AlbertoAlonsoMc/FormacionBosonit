@@ -39,7 +39,7 @@ public class ControllerProfesor {
     }
 
     @GetMapping("getAll")
-    public List<Profesor> getAll() {
+    public List<ProfesorPersonaOutputDTO> getAll() {
         return profesorService.getAll();
     }
 }

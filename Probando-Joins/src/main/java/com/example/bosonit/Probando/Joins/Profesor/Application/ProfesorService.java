@@ -15,7 +15,7 @@ public interface ProfesorService {
 
     ProfesorPersonaOutputDTO getProfesorPersona(int id);
 
-    List<Profesor> getAll();
+    List<ProfesorPersonaOutputDTO> getAll();
 
     void deleteProfesor(int id);
 }
