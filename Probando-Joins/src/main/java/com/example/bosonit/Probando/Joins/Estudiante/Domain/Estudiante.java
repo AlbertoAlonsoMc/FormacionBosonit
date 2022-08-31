@@ -45,6 +45,9 @@ public class Estudiante {
     }
 
     public EstudianteOutputDTO toEstudianteOutputDTO() {
-        return new EstudianteOutputDTO(id);
+        EstudianteOutputDTO estudianteOutputDTO = new EstudianteOutputDTO();
+        estudianteOutputDTO.setId(id);
+        estudianteOutputDTO.setAsignaturas(asignaturas.stream().map(Asignatura::toAsignaturaOutputDTO).toList());
+        return estudianteOutputDTO;
     }
 }

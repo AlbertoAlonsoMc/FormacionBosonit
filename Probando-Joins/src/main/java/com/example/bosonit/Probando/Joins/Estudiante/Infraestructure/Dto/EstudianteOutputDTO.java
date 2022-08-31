@@ -14,7 +14,5 @@ import java.util.List;
 public class EstudianteOutputDTO {
     private int id;
     private List<AsignaturaOutputDTO> asignaturas;
-
-    public EstudianteOutputDTO(int id) {
-    }
+    
 }

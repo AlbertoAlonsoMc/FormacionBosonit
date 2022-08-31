@@ -1,6 +1,9 @@
 package com.example.bosonit.Probando.Joins.Estudiante.Infraestructure.Controller;
 
+import com.example.bosonit.Probando.Joins.Asignatura.Infraestructure.Dto.AsignaturaOutputDTO;
+import com.example.bosonit.Probando.Joins.Asignatura.Infraestructure.Repo.AsignaturaRepository;
 import com.example.bosonit.Probando.Joins.Estudiante.Application.EstudianteService;
+import com.example.bosonit.Probando.Joins.Estudiante.Domain.Estudiante;
 import com.example.bosonit.Probando.Joins.Estudiante.Infraestructure.Dto.EstudianteInputDTO;
 import com.example.bosonit.Probando.Joins.Estudiante.Infraestructure.Dto.EstudianteOutputDTO;
 import com.example.bosonit.Probando.Joins.Estudiante.Infraestructure.Dto.EstudiantePersonaOutputDTO;
@@ -43,5 +46,10 @@ public class ControllerEstudiante {
     @GetMapping("getAll")
     public List<EstudiantePersonaOutputDTO> getAll() {
         return estudianteService.getAll();
+    }
+
+    @PostMapping("postEstudiante/{id_estudiante}/asignarAsignatura/{id_asignatura}")
+    public EstudianteOutputDTO asignarAsignatura(@PathVariable int id_estudiante, @PathVariable int id_asignatura) {
+        return estudianteService.asignarAsignatura(id_estudiante, id_asignatura);
     }
 }

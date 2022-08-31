@@ -1,5 +1,8 @@
 package com.example.bosonit.Probando.Joins.Estudiante.Application;
 
+import com.example.bosonit.Probando.Joins.Asignatura.Domain.Asignatura;
+import com.example.bosonit.Probando.Joins.Asignatura.Infraestructure.Dto.AsignaturaOutputDTO;
+import com.example.bosonit.Probando.Joins.Asignatura.Infraestructure.Repo.AsignaturaRepository;
 import com.example.bosonit.Probando.Joins.Estudiante.Domain.Estudiante;
 import com.example.bosonit.Probando.Joins.Estudiante.Infraestructure.Dto.EstudianteInputDTO;
 import com.example.bosonit.Probando.Joins.Estudiante.Infraestructure.Dto.EstudianteOutputDTO;
@@ -20,6 +23,9 @@ import java.util.List;
 public class EstudianteServiceImp implements EstudianteService {
     @Autowired
     EstudianteRepository estudianteRepository;
+
+    @Autowired
+    AsignaturaRepository asignaturaRepository;
 
     @Override
     public EstudiantePersonaOutputDTO addEstudiante(EstudianteInputDTO estudianteInputDTO) {
@@ -52,4 +58,14 @@ public class EstudianteServiceImp implements EstudianteService {
         estudianteRepository.deleteById(id);
     }
 
+    @Override
+    public EstudianteOutputDTO asignarAsignatura(int id_estudiante, int id_asignatura) {
+        Asignatura asignatura;
+        Estudiante estudiante = estudianteRepository.findById(id_estudiante).orElseThrow();
+        estudiante.getAsignaturas().add(asignatura = asignaturaRepository.findById(id_asignatura).orElseThrow());
+        asignatura.getEstudiantes().add(estudiante);
+        estudianteRepository.save(estudiante);
+        asignaturaRepository.save(asignatura);
+        return estudiante.toEstudianteOutputDTO();
+    }
 }

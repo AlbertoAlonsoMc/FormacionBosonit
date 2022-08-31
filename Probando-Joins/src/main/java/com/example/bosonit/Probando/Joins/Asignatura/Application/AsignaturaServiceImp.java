@@ -4,16 +4,22 @@ import com.example.bosonit.Probando.Joins.Asignatura.Domain.Asignatura;
 import com.example.bosonit.Probando.Joins.Asignatura.Infraestructure.Dto.AsignaturaInputDTO;
 import com.example.bosonit.Probando.Joins.Asignatura.Infraestructure.Dto.AsignaturaOutputDTO;
 import com.example.bosonit.Probando.Joins.Asignatura.Infraestructure.Repo.AsignaturaRepository;
+import com.example.bosonit.Probando.Joins.Estudiante.Domain.Estudiante;
+import com.example.bosonit.Probando.Joins.Estudiante.Infraestructure.Repo.EstudianteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 public class AsignaturaServiceImp implements AsignaturaService {
     @Autowired
     AsignaturaRepository asignaturaRepository;
+
+    @Autowired
+    EstudianteRepository estudianteRepository;
 
     @Override
     public AsignaturaOutputDTO addAsignatura(AsignaturaInputDTO asignaturaInputDTO) {
@@ -37,6 +43,16 @@ public class AsignaturaServiceImp implements AsignaturaService {
 
     @Override
     public void deleteasignatura(int id) {
+        List<Estudiante> estudiantes;
+        Optional<Asignatura> asignatura = asignaturaRepository.findById(id);
+        estudiantes = asignatura.orElseThrow().getEstudiantes();
+        for (Estudiante estudiante :
+                estudiantes) {
+            if (estudiantes.contains(asignatura.orElseThrow())) {
+                estudiantes.remove(asignatura.orElseThrow());
+                estudianteRepository.save(estudiante);
+            }
+        }
         asignaturaRepository.deleteById(id);
     }
 
