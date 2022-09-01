@@ -4,6 +4,7 @@ import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorO
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorPersonaOutputDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
 public interface ProfesorFeign {
 
     @GetMapping("getProfesor/{id}")
-    ProfesorOutputDTO getProfesorFeign(int id);
+    ProfesorOutputDTO getProfesorFeign(@PathVariable int id);
 
     @GetMapping("getAll")
     List<ProfesorPersonaOutputDTO> getAllFeign();
