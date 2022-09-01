@@ -1,6 +1,7 @@
 package com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Controller;
 
 import com.example.bosonit.Probando.Joins.Asignatura.Domain.Asignatura;
+import com.example.bosonit.Probando.Joins.Profesor.Application.ProfesorFeign;
 import com.example.bosonit.Probando.Joins.Profesor.Domain.Profesor;
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorInputDTO;
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorOutputDTO;
@@ -22,6 +23,9 @@ public class ControllerProfesor {
     @Autowired
     ProfesorService profesorService;
 
+    @Autowired
+    ProfesorFeign profesorFeign;
+
     @PostMapping("addProfesor/{id_asignatura}")
     public ProfesorPersonaOutputDTO addProfesor(@RequestBody @Valid ProfesorInputDTO profesorInputDTO, @PathVariable int id_asignatura) {
         return profesorService.addProfesor(profesorInputDTO, id_asignatura);
@@ -41,13 +45,24 @@ public class ControllerProfesor {
         };
     }
 
-    @GetMapping("getProfesorRestTemplate/{id}")
-    public ProfesorOutputDTO getProfesor(@PathVariable int id) {
-        return profesorService.getProfesorRestTemplate(id);
-    }
-
     @GetMapping("getAll")
     public List<ProfesorPersonaOutputDTO> getAll() {
         return profesorService.getAll();
     }
+
+    @GetMapping("getProfesorRestTemplate/{id}")
+    public ProfesorOutputDTO getProfesorRT(@PathVariable int id) {
+        return profesorService.getProfesorRestTemplate(id);
+    }
+
+    @GetMapping("getProfesorFeign/{id}")
+    public ProfesorOutputDTO getProfesorFeign(@PathVariable int id) {
+        return profesorFeign.getProfesorFeign(id);
+    }
+
+    @GetMapping("getAllFeign")
+    public List<ProfesorPersonaOutputDTO> getAllFeign() {
+        return profesorFeign.getAllFeign();
+    }
+
 }
