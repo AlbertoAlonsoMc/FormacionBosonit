@@ -8,7 +8,10 @@ import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorP
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Repo.ProfesorRepository;
 import com.example.bosonit.Probando.Joins.Profesor.Domain.Profesor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +38,16 @@ public class ProfesorServiceImp implements ProfesorService {
     public ProfesorOutputDTO getProfesor(int id) {
         Profesor profesor = profesorRepository.findById(id).orElseThrow();
         return profesor.toProfesorOutputDTO();
+    }
+
+    @Override
+    public ProfesorOutputDTO getProfesorRestTemplate(int id) {
+        ResponseEntity<ProfesorOutputDTO> responseEntity = new RestTemplate().getForEntity("http://localhost:8080/profesor/getProfesor/" + id, ProfesorOutputDTO.class);
+        if (responseEntity.getStatusCode() == HttpStatus.OK) {
+            return responseEntity.getBody();
+        } else {
+            throw new RuntimeException("Error");
+        }
     }
 
     @Override

@@ -13,6 +13,8 @@ public interface ProfesorService {
 
     ProfesorOutputDTO getProfesor(int id);
 
+    ProfesorOutputDTO getProfesorRestTemplate(int id);
+
     ProfesorPersonaOutputDTO getProfesorPersona(int id);
 
     List<ProfesorPersonaOutputDTO> getAll();

@@ -7,7 +7,10 @@ import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorO
 import com.example.bosonit.Probando.Joins.Profesor.Infraestructure.Dto.ProfesorPersonaOutputDTO;
 import com.example.bosonit.Probando.Joins.Profesor.Application.ProfesorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -36,6 +39,11 @@ public class ControllerProfesor {
             case "full" -> profesorService.getProfesorPersona(id);
             default -> profesorService.getProfesor(id);
         };
+    }
+
+    @GetMapping("getProfesorRestTemplate/{id}")
+    public ProfesorOutputDTO getProfesor(@PathVariable int id) {
+        return profesorService.getProfesorRestTemplate(id);
     }
 
     @GetMapping("getAll")
