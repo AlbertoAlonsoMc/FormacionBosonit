@@ -10,7 +10,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("persona")
 public class ControllerPersona {
 
     @Autowired
@@ -21,7 +20,7 @@ public class ControllerPersona {
         return personaService.mostrarTodas();
     }
 
-    @PostMapping("addPersona")
+    @PostMapping("addperson")
     public PersonaOutputDTO addPersona(@RequestBody @Valid PersonaInputDTO personaInputDTO) {
         return personaService.addPersona(personaInputDTO);
     }
