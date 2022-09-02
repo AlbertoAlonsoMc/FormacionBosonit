@@ -20,39 +20,39 @@ public class PersonaInputDTO {
     private String usuario;
 
     @NotBlank
-    private String apellidos;
+    private String surname;
 
     @NotBlank
-    private String nombre;
+    private String name;
 
     @NotBlank
-    private String contrasena;
-
-    @NotBlank
-    @Email
-    private String emailCompania;
+    private String password;
 
     @NotBlank
     @Email
-    private String emailPersonal;
+    private String company_email;
 
     @NotBlank
-    private String ciudad;
+    @Email
+    private String personal_email;
+
+    @NotBlank
+    private String city;
+
+    @NotBlank
+    private String imagen_url;
 
     @NotNull
-    private String urlImagen;
+    private Date created_date;
 
     @NotNull
-    private Date fechaCreacion;
+    private boolean active;
 
     @NotNull
-    private boolean activado;
-
-    @NotNull
-    private Date fechaFinalizacion;
+    private Date termination_date;
 
     public Persona toPersona() {
-        return new Persona(usuario, apellidos, nombre, contrasena, emailCompania, emailPersonal,
-                ciudad, urlImagen, fechaCreacion, activado, fechaFinalizacion);
+        return new Persona(usuario, surname, name, password, company_email, personal_email,
+                city, imagen_url, created_date, active, termination_date);
     }
 }

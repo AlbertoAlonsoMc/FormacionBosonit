@@ -2,7 +2,6 @@ package com.example.bosonit.cors.Persona.Infraestructure.Controller;
 
 import com.example.bosonit.cors.Persona.Application.PersonaFeignClient;
 import com.example.bosonit.cors.Persona.Application.PersonaService;
-import com.example.bosonit.cors.Persona.Domain.Persona;
 import com.example.bosonit.cors.Persona.Infraestructure.DTOs.PersonaInputDTO;
 import com.example.bosonit.cors.Persona.Infraestructure.DTOs.PersonaOutputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin(value = "*")
 public class ControllerPersona {
 
     @Autowired
