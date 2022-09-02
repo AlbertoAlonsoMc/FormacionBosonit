@@ -43,7 +43,7 @@ public class PersonaInputDTO {
     @NotNull
     private String urlImagen;
 
-    @NotEmpty
+    @NotNull
     private Date fechaCreacion;
 
     @NotNull
