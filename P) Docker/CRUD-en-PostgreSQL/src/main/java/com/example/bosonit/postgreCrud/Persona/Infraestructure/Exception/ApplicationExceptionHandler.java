@@ -1,4 +1,4 @@
-package com.example.bosonit.cors.Persona.Infraestructure.Exception;
+package com.example.bosonit.postgreCrud.Persona.Infraestructure.Exception;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
