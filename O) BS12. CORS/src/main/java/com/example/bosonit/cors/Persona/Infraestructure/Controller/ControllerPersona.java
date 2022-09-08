@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping("persona")
 @CrossOrigin(value = "*")
 public class ControllerPersona {
 
@@ -31,12 +32,12 @@ public class ControllerPersona {
     }
 
 
-    @PostMapping("addperson")
+    @PostMapping("add")
     public PersonaOutputDTO addPersona(@RequestBody @Valid PersonaInputDTO personaInputDTO) {
         return personaService.addPersona(personaInputDTO);
     }
 
-    @DeleteMapping("deletePersona/{id}")
+    @DeleteMapping("delete/{id}")
     public String deletePersona(@PathVariable long id) {
         return personaService.deletePersona(id);
     }
