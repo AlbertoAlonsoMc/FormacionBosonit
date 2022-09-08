@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@CrossOrigin(value = "http://localhost:8080")
+@CrossOrigin(value = "*")
 public class ControllerPersona {
 
     @Autowired
