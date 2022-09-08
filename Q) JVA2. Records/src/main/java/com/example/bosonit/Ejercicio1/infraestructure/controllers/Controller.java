@@ -2,7 +2,7 @@ package com.example.bosonit.Ejercicio1.infraestructure.controllers;
 
 import com.example.bosonit.Ejercicio1.application.PersonaService;
 import com.example.bosonit.Ejercicio1.infraestructure.PersonaInputDTORecord;
-import com.example.bosonit.Ejercicio1.infraestructure.PersonaOutputDTO;
+import com.example.bosonit.Ejercicio1.infraestructure.PersonaOutputDTORecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,17 +18,17 @@ public class Controller {
     PersonaService personaService;
 
     @PostMapping("add")
-    public PersonaOutputDTO postPersona(@RequestBody PersonaInputDTORecord personaInputDTORecord) throws Exception {
+    public PersonaOutputDTORecord postPersona(@RequestBody PersonaInputDTORecord personaInputDTORecord) throws Exception {
         return personaService.anadirPersona(personaInputDTORecord);
     }
 
     @PutMapping("id/{id}")
-    public ResponseEntity<PersonaOutputDTO> modificarPersonaID(@PathVariable int id, @RequestBody PersonaInputDTORecord personaInputDTORecord) throws Exception {
-        PersonaOutputDTO personaOutputDTO = personaService.modificarPersona(id, personaInputDTORecord);
-        if (personaOutputDTO == null) {
+    public ResponseEntity<PersonaOutputDTORecord> modificarPersonaID(@PathVariable int id, @RequestBody PersonaInputDTORecord personaInputDTORecord) throws Exception {
+        PersonaOutputDTORecord personaOutputDTORecord = personaService.modificarPersona(id, personaInputDTORecord);
+        if (personaOutputDTORecord == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
         } else {
-            return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
+            return new ResponseEntity<>(personaOutputDTORecord, HttpStatus.OK);
         }
     }
 
@@ -42,22 +42,22 @@ public class Controller {
     }
 
     @GetMapping("id/{id}")
-    public ResponseEntity<PersonaOutputDTO> getPersonaID(@PathVariable int id) throws Exception {
-        PersonaOutputDTO personaOutputDTO = personaService.buscarPorID(id);
-        if (personaOutputDTO == null) {
+    public ResponseEntity<PersonaOutputDTORecord> getPersonaID(@PathVariable int id) throws Exception {
+        PersonaOutputDTORecord personaOutputDTORecord = personaService.buscarPorID(id);
+        if (personaOutputDTORecord == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(personaOutputDTO, HttpStatus.OK);
+            return new ResponseEntity<>(personaOutputDTORecord, HttpStatus.OK);
         }
     }
 
     @GetMapping("user/{usuario}")
-    public List<PersonaOutputDTO> getPersonaUser(@PathVariable String usuario) {
+    public List<PersonaOutputDTORecord> getPersonaUser(@PathVariable String usuario) {
         return personaService.buscarPorUsuario(usuario);
     }
 
     @GetMapping("all")
-    public List<PersonaOutputDTO> mostrarTodos() {
+    public List<PersonaOutputDTORecord> mostrarTodos() {
         return personaService.mostrarTodos();
     }
 }

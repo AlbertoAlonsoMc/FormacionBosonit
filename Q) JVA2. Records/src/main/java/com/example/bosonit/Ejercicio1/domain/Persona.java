@@ -1,11 +1,9 @@
 package com.example.bosonit.Ejercicio1.domain;
 
-import com.example.bosonit.Ejercicio1.infraestructure.PersonaOutputDTO;
+import com.example.bosonit.Ejercicio1.infraestructure.PersonaOutputDTORecord;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.modelmapper.ModelMapper;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,23 +20,33 @@ public class Persona {
     @GeneratedValue
     private int id;
 
-    @NonNull
     private String usuario, password, name, company_email, personal_email, city;
 
     private String surname;
 
-    @NonNull
     private boolean active;
 
-    @NonNull
     private Date created_date;
 
     private String imagen_url;
 
     private Date termination_date;
 
-    public PersonaOutputDTO toPersonaOutputDTO(Persona persona) {
-        ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(persona, PersonaOutputDTO.class);
+    public Persona(String usuario, String password, String name, String company_email, String personal_email, String city, String surname, boolean active, Date created_date, String imagen_url, Date termination_date) {
+        this.usuario = usuario;
+        this.password = password;
+        this.name = name;
+        this.company_email = company_email;
+        this.personal_email = personal_email;
+        this.city = city;
+        this.surname = surname;
+        this.active = active;
+        this.created_date = created_date;
+        this.imagen_url = imagen_url;
+        this.termination_date = termination_date;
+    }
+
+    public PersonaOutputDTORecord toPersonaOutputDTORecord() {
+        return new PersonaOutputDTORecord(id, usuario, password, name, company_email, personal_email, city, surname, active, created_date, imagen_url, termination_date);
     }
 }

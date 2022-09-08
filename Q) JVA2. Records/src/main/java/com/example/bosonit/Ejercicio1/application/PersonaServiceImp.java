@@ -2,7 +2,7 @@ package com.example.bosonit.Ejercicio1.application;
 
 import com.example.bosonit.Ejercicio1.domain.Persona;
 import com.example.bosonit.Ejercicio1.infraestructure.PersonaInputDTORecord;
-import com.example.bosonit.Ejercicio1.infraestructure.PersonaOutputDTO;
+import com.example.bosonit.Ejercicio1.infraestructure.PersonaOutputDTORecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +15,20 @@ public class PersonaServiceImp implements PersonaService {
     PersonaRepo personaRepo;
 
     @Override
-    public PersonaOutputDTO anadirPersona(PersonaInputDTORecord personaInputDTORecord) throws Exception {
-        Persona persona = personaInputDTORecord.toPersona(personaInputDTORecord);
+    public PersonaOutputDTORecord anadirPersona(PersonaInputDTORecord personaInputDTORecord) throws Exception {
+        Persona persona = personaInputDTORecord.toPersona();
         personaRepo.save(persona);
-        return persona.toPersonaOutputDTO(persona);
+        return persona.toPersonaOutputDTORecord();
     }
 
     @Override
-    public PersonaOutputDTO modificarPersona(int id, PersonaInputDTORecord personaInputDTORecord) throws Exception {
+    public PersonaOutputDTORecord modificarPersona(int id, PersonaInputDTORecord personaInputDTORecord) throws Exception {
         if (personaRepo.findById(id).isPresent()) {
             Persona persona;
-            persona = personaInputDTORecord.toPersona(personaInputDTORecord);
+            persona = personaInputDTORecord.toPersona();
             persona.setId(id);
             personaRepo.save(persona);
-            return persona.toPersonaOutputDTO(persona);
+            return persona.toPersonaOutputDTORecord();
         } else {
             return null;
         }
@@ -46,19 +46,19 @@ public class PersonaServiceImp implements PersonaService {
 
 
     @Override
-    public PersonaOutputDTO buscarPorID(int id) {
+    public PersonaOutputDTORecord buscarPorID(int id) {
         Persona persona;
         persona = personaRepo.findById(id).orElse(null);
-        return persona != null ? persona.toPersonaOutputDTO(persona) : null;
+        return persona != null ? persona.toPersonaOutputDTORecord() : null;
     }
 
     @Override
-    public List<PersonaOutputDTO> buscarPorUsuario(String usuario) {
-        return personaRepo.findByUsuario(usuario).stream().map(n -> n.toPersonaOutputDTO(n)).toList();
+    public List<PersonaOutputDTORecord> buscarPorUsuario(String usuario) {
+        return personaRepo.findByUsuario(usuario).stream().map(Persona::toPersonaOutputDTORecord).toList();
     }
 
     @Override
-    public List<PersonaOutputDTO> mostrarTodos() {
-        return personaRepo.findAll().stream().map(n -> n.toPersonaOutputDTO(n)).toList();
+    public List<PersonaOutputDTORecord> mostrarTodos() {
+        return personaRepo.findAll().stream().map(Persona::toPersonaOutputDTORecord).toList();
     }
 }

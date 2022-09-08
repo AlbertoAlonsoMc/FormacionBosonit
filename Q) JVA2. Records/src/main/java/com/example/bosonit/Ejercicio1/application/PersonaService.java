@@ -1,22 +1,22 @@
 package com.example.bosonit.Ejercicio1.application;
 
 import com.example.bosonit.Ejercicio1.infraestructure.PersonaInputDTORecord;
-import com.example.bosonit.Ejercicio1.infraestructure.PersonaOutputDTO;
+import com.example.bosonit.Ejercicio1.infraestructure.PersonaOutputDTORecord;
 
 import java.util.List;
 
 public interface PersonaService {
-    PersonaOutputDTO anadirPersona(PersonaInputDTORecord personaInputDTORecord) throws Exception;
+    PersonaOutputDTORecord anadirPersona(PersonaInputDTORecord personaInputDTORecord) throws Exception;
 
-    PersonaOutputDTO modificarPersona(int id, PersonaInputDTORecord personaInputDTORecord) throws Exception;
+    PersonaOutputDTORecord modificarPersona(int id, PersonaInputDTORecord personaInputDTORecord) throws Exception;
 
     boolean borrarPersona(int id);
 
-    PersonaOutputDTO buscarPorID(int id);
+    PersonaOutputDTORecord buscarPorID(int id);
 
-    List<PersonaOutputDTO> buscarPorUsuario(String usuario);
+    List<PersonaOutputDTORecord> buscarPorUsuario(String usuario);
 
-    List<PersonaOutputDTO> mostrarTodos();
+    List<PersonaOutputDTORecord> mostrarTodos();
 
 
 }
