@@ -52,7 +52,7 @@ public class PersonaInputDTO {
     private Date termination_date;
 
     public Persona toPersona() {
-        return new Persona(usuario, surname, name, password, company_email, personal_email,
+        return new Persona(0, usuario, surname, name, password, company_email, personal_email,
                 city, imagen_url, created_date, active, termination_date);
     }
 }

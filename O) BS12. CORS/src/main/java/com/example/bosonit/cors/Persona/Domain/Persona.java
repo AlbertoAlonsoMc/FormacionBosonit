@@ -1,6 +1,7 @@
 package com.example.bosonit.cors.Persona.Domain;
 
 import com.example.bosonit.cors.Persona.Infraestructure.DTOs.PersonaOutputDTO;
+import com.example.bosonit.cors.Profesor.Domain.Profesor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -54,7 +55,11 @@ public class Persona {
     @Column(name = "FECHA_FINALIZACIÓN")
     private Date fechaFinalizacion;
 
-    public Persona(String usuario, String apellidos, String nombre, String contrasena, String emailCompania, String emailPersonal, String ciudad, String urlImagen, Date fechaCreacion, boolean activado, Date fechaFinalizacion) {
+    @OneToOne(mappedBy = "persona")
+    private Profesor profesor;
+
+    public Persona(long id, String usuario, String apellidos, String nombre, String contrasena, String emailCompania, String emailPersonal, String ciudad, String urlImagen, Date fechaCreacion, boolean activado, Date fechaFinalizacion) {
+        this.id = id;
         this.usuario = usuario;
         this.apellidos = apellidos;
         this.nombre = nombre;
