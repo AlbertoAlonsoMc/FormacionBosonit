@@ -1,7 +1,5 @@
-package com.example.bosonit.cors.Exception;
+package com.example.bosonit.cors.Persona.Infraestructure.Exception;
 
-import com.example.bosonit.cors.Persona.Domain.Persona;
-import com.example.bosonit.cors.Profesor.Domain.Profesor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -25,7 +23,7 @@ public class ApplicationExceptionHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(EmptyResultDataAccessException.class)
-    public String elementoNoExiste(EmptyResultDataAccessException ex) {
-        return "No existe ningún elemento con este ID";
+    public String personaNoExiste(EmptyResultDataAccessException ex) {
+        return "No existe ninguna persona con este ID";
     }
 }

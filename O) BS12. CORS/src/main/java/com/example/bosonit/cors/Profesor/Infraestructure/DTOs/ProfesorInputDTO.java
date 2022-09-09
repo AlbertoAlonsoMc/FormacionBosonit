@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -17,17 +16,43 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProfesorInputDTO {
-    @NotEmpty
-    private String biografia;
+    @NotBlank
+    private String usuario;
+
+    @NotBlank
+    private String surname;
+
+    @NotBlank
+    private String name;
+
+    @NotBlank
+    private String password;
+
+    @NotBlank
+    @Email
+    private String company_email;
+
+    @NotBlank
+    @Email
+    private String personal_email;
+
+    @NotBlank
+    private String city;
+
+    @NotBlank
+    private String imagen_url;
 
     @NotNull
-    private long id_persona;
+    private Date created_date;
 
-    /*@NotBlank
-    private String id_asignatura;*/
+    @NotNull
+    private boolean active;
 
+    @NotNull
+    private Date termination_date;
 
     public Profesor toProfesor() {
-        return new Profesor(0, biografia);
+        return new Profesor(usuario, surname, name, password, company_email, personal_email,
+                city, imagen_url, created_date, active, termination_date);
     }
 }

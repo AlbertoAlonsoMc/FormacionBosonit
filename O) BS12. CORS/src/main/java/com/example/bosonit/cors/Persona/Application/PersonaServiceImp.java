@@ -25,7 +25,7 @@ public class PersonaServiceImp implements PersonaService {
     @Override
     public String deletePersona(long id) {
         personaRepository.deleteById(id);
-        return "Persona con id " + id + " eliminada correctamente";
+        return "Persona eliminada correctamente";
     }
 
     @Override
