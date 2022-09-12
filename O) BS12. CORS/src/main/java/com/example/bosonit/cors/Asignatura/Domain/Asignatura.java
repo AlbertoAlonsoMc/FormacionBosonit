@@ -1,6 +1,7 @@
 package com.example.bosonit.cors.Asignatura.Domain;
 
 import com.example.bosonit.cors.Asignatura.Infraestructure.DTOs.AsignaturaOutputDTO;
+import com.example.bosonit.cors.Estudiante.Domain.Estudiante;
 import com.example.bosonit.cors.Persona.Domain.Persona;
 import com.example.bosonit.cors.Profesor.Domain.Profesor;
 import com.example.bosonit.cors.Profesor.Infraestructure.DTOs.ProfesorOutputDTO;
@@ -11,6 +12,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Entity
@@ -40,8 +42,11 @@ public class Asignatura {
     @OneToOne(mappedBy = "asignatura", fetch = FetchType.LAZY)
     private Profesor profesor;
 
-    /*@ManyToMany
-    List<Estudiante> estudiantes;*/
+    @ManyToMany
+    @JoinTable(name = "asignatura_estudiante",
+            joinColumns = {@JoinColumn(name = "id_asignatura")},
+            inverseJoinColumns = {@JoinColumn(name = "id_estudiante")})
+    private List<Estudiante> estudiantes;
 
 
     public AsignaturaOutputDTO toAsignaturaOutputDTO() {

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,5 +16,6 @@ public class EstudianteOutputDTO {
     private long id;
     private String biografia;
     private int horas_semana;
+    private List<String> asignaturas;
     private PersonaOutputDTO personaOutputDTO;
 }

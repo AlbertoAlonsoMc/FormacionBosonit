@@ -1,5 +1,6 @@
 package com.example.bosonit.cors.Estudiante.Infraestructure.Controller;
 
+import com.example.bosonit.cors.Asignatura.Infraestructure.DTOs.AsignaturaOutputDTO;
 import com.example.bosonit.cors.Estudiante.Application.EstudianteService;
 import com.example.bosonit.cors.Estudiante.Infraestructure.DTOs.EstudianteInputDTO;
 import com.example.bosonit.cors.Estudiante.Infraestructure.DTOs.EstudianteOutputDTO;
@@ -25,6 +26,11 @@ public class ControllerEstudiante {
     @PostMapping("add")
     public EstudianteOutputDTO addEstudiante(@RequestBody @Valid EstudianteInputDTO estudianteInputDTO) throws Exception {
         return estudianteService.addEstudiante(estudianteInputDTO);
+    }
+
+    @PostMapping("{idEstudiante}/asignarAsignatura/{idAsignatura}")
+    public AsignaturaOutputDTO asignarAsignatura(@PathVariable long idEstudiante, @PathVariable long idAsignatura) {
+        return estudianteService.asignarAsignatura(idEstudiante, idAsignatura);
     }
 
     @DeleteMapping("delete/{id}")
