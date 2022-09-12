@@ -1,5 +1,6 @@
 package com.example.bosonit.cors.Profesor.Infraestructure.DTOs;
 
+import com.example.bosonit.cors.Persona.Infraestructure.DTOs.PersonaOutputDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,26 +16,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class ProfesorOutputDTO {
     private long id;
-
-    private String usuario;
-
-    private String apellidos;
-
-    private String nombre;
-
-    private String contrasena;
-
-    private String emailCompania;
-
-    private String emailPersonal;
-
-    private String ciudad;
-
-    private String urlImagen;
-
-    private Date fechaCreacion;
-
-    private boolean activado;
-
-    private Date fechaFinalizacion;
+    private String biografia;
+    private PersonaOutputDTO personaOutputDTO;
 }

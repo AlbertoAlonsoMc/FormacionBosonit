@@ -1,5 +1,6 @@
 package com.example.bosonit.cors.Profesor.Infraestructure.DTOs;
 
+import com.example.bosonit.cors.Persona.Domain.Persona;
 import com.example.bosonit.cors.Profesor.Domain.Profesor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -16,43 +18,13 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProfesorInputDTO {
-    @NotBlank
-    private String usuario;
-
-    @NotBlank
-    private String surname;
-
-    @NotBlank
-    private String name;
-
-    @NotBlank
-    private String password;
-
-    @NotBlank
-    @Email
-    private String company_email;
-
-    @NotBlank
-    @Email
-    private String personal_email;
-
-    @NotBlank
-    private String city;
-
-    @NotBlank
-    private String imagen_url;
+    @NotEmpty
+    private String biografia;
 
     @NotNull
-    private Date created_date;
-
-    @NotNull
-    private boolean active;
-
-    @NotNull
-    private Date termination_date;
+    private long id_persona;
 
     public Profesor toProfesor() {
-        return new Profesor(usuario, surname, name, password, company_email, personal_email,
-                city, imagen_url, created_date, active, termination_date);
+        return new Profesor(0, biografia, id_persona);
     }
 }

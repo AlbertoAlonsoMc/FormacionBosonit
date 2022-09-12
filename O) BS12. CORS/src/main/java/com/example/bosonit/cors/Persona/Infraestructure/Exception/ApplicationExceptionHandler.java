@@ -1,5 +1,6 @@
 package com.example.bosonit.cors.Persona.Infraestructure.Exception;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @RestControllerAdvice
 public class ApplicationExceptionHandler {
@@ -25,5 +27,17 @@ public class ApplicationExceptionHandler {
     @ExceptionHandler(EmptyResultDataAccessException.class)
     public String personaNoExiste(EmptyResultDataAccessException ex) {
         return "No existe ninguna persona con este ID";
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NoSuchElementException.class)
+    public String personaNoExiste2(NoSuchElementException ex) {
+        return "No existe ninguna persona con este ID";
+    }
+
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public String idOcupado(DataIntegrityViolationException ex) {
+        return "No se puede asociar con esta persona";
     }
 }
