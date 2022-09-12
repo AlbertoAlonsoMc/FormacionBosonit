@@ -16,11 +16,12 @@ public class AsignaturasPredefinidas implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Asignatura asignaturaNueva1 = new Asignatura(0, "Matemáticas", "Álgebra avanzada", new Date(2015, Calendar.JUNE, 5), new Date(2015, Calendar.JUNE, 5), null);
-        Asignatura asignaturaNueva2 = new Asignatura(0, "Inglés", "Technical English", new Date(2015, Calendar.JUNE, 5), new Date(2015, Calendar.JUNE, 5), null);
-        Asignatura asignaturaNueva3 = new Asignatura(0, "Biología", "Biología molecular", new Date(2015, Calendar.JUNE, 5), new Date(2015, Calendar.JUNE, 5), null);
-        Asignatura asignaturaNueva4 = new Asignatura(0, "Informática", "Sistemas y redes", new Date(2015, Calendar.JUNE, 5), new Date(2015, Calendar.JUNE, 5), null);
-        Asignatura asignaturaNueva5 = new Asignatura(0, "Psicología", "Introducción a la neurociencia", new Date(2015, Calendar.JUNE, 5), new Date(2015, Calendar.JUNE, 5), null);
+        //En el constructor new Date() ya no se puede poner YYYY MM DD, está deprecado. En lugar de ello, se pone un Long de milisegundos
+        Asignatura asignaturaNueva1 = new Asignatura(0, "Matemáticas", "Álgebra avanzada", new Date(1662760800000L), new Date(1687298400000L), null);
+        Asignatura asignaturaNueva2 = new Asignatura(0, "Inglés", "Technical English", new Date(1662760800000L), new Date(1687298400000L), null);
+        Asignatura asignaturaNueva3 = new Asignatura(0, "Biología", "Biología molecular", new Date(1662760800000L), new Date(1687298400000L), null);
+        Asignatura asignaturaNueva4 = new Asignatura(0, "Informática", "Sistemas y redes", new Date(1662760800000L), new Date(1687298400000L), null);
+        Asignatura asignaturaNueva5 = new Asignatura(0, "Psicología", "Introducción a la neurociencia", new Date(1662760800000L), new Date(1687298400000L), null);
         asignaturaRepository.save(asignaturaNueva1);
         asignaturaRepository.save(asignaturaNueva2);
         asignaturaRepository.save(asignaturaNueva3);
