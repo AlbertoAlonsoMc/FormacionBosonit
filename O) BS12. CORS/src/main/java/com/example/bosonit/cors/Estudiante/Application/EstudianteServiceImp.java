@@ -22,15 +22,16 @@ public class EstudianteServiceImp implements EstudianteService {
 
     @Override
     public EstudianteOutputDTO addEstudiante(EstudianteInputDTO estudianteInputDTO) {
-        Persona persona;
+        Persona persona = personaRepository.findById(estudianteInputDTO.getId_persona()).orElseThrow();
         Estudiante estudiante = estudianteInputDTO.toEstudiante();
-        persona = personaRepository.findById(estudianteInputDTO.getId_persona()).orElseThrow();
-        estudiante.setPersona(persona);
-        persona.setEstudiante(estudiante);
-        estudianteRepository.save(estudiante);
-        personaRepository.save(persona);
-        return estudiante.toEstudianteOutputDTO();
-
+        if (persona.getProfesor() == null) {
+            estudiante.setPersona(persona);
+            persona.setEstudiante(estudiante);
+            estudianteRepository.save(estudiante);
+            personaRepository.save(persona);
+            return estudiante.toEstudianteOutputDTO();
+        }
+        return null;
     }
 
     @Override

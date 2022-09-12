@@ -23,26 +23,25 @@ public class ProfesorServiceImp implements ProfesorService {
 
     @Override
     public ProfesorOutputDTO addProfesor(ProfesorInputDTO profesorInputDTO) {
-        Persona persona;
+        /*Persona persona;
         Profesor profesor = profesorInputDTO.toProfesor();
         persona = personaRepository.findById(profesorInputDTO.getId_persona()).orElseThrow();
         profesor.setPersona(persona);
         persona.setProfesor(profesor);
         profesorRepository.save(profesor);
         personaRepository.save(persona);
-        return profesor.toProfesorOutputDTO();
+        return profesor.toProfesorOutputDTO();*/
 
-        /*Persona persona = personaRepository.findById(profesorInputDTO.getId_persona()).orElseThrow();
+        Persona persona = personaRepository.findById(profesorInputDTO.getId_persona()).orElseThrow();
         Profesor profesor = profesorInputDTO.toProfesor();
-        //TODO ALTERNATIVA???
-        if (persona.getProfesor() == null) {
+        if (persona.getEstudiante() == null) {
             profesor.setPersona(persona);
             persona.setProfesor(profesor);
             profesorRepository.save(profesor);
             personaRepository.save(persona);
             return profesor.toProfesorOutputDTO();
         }
-        return null;*/
+        return null;
     }
 
     @Override
