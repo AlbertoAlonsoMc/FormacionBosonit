@@ -47,7 +47,8 @@ public class ProfesorServiceImp implements ProfesorService {
 
     @Override
     public String deleteProfesor(long id) {
-        return null;
+        profesorRepository.deleteById(id);
+        return "Profesor con id " + id + " eliminado";
     }
 
     @Override

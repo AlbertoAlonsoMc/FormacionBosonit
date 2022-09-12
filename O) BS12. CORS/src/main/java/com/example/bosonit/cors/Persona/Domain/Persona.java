@@ -1,5 +1,6 @@
 package com.example.bosonit.cors.Persona.Domain;
 
+import com.example.bosonit.cors.Estudiante.Domain.Estudiante;
 import com.example.bosonit.cors.Persona.Infraestructure.DTOs.PersonaOutputDTO;
 import com.example.bosonit.cors.Profesor.Domain.Profesor;
 import lombok.AllArgsConstructor;
@@ -57,6 +58,9 @@ public class Persona {
 
     @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Profesor profesor;
+
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Estudiante estudiante;
 
     public Persona(String usuario, String apellidos, String nombre, String contrasena, String emailCompania, String emailPersonal, String ciudad, String urlImagen, Date fechaCreacion, boolean activado, Date fechaFinalizacion) {
         this.usuario = usuario;
