@@ -8,7 +8,7 @@ import com.example.bosonit.cors.Profesor.Infraestructure.DTOs.ProfesorOutputDTO;
 import java.util.List;
 
 public interface ProfesorService {
-    ProfesorOutputDTO addProfesor(ProfesorInputDTO profesorInputDTO);
+    ProfesorOutputDTO addProfesor(ProfesorInputDTO profesorInputDTO) throws Exception;
 
     String deleteProfesor(long id);
 

@@ -1,5 +1,6 @@
 package com.example.bosonit.cors.Profesor.Domain;
 
+import com.example.bosonit.cors.Asignatura.Domain.Asignatura;
 import com.example.bosonit.cors.Persona.Domain.Persona;
 import com.example.bosonit.cors.Profesor.Infraestructure.DTOs.ProfesorOutputDTO;
 import lombok.AllArgsConstructor;
@@ -29,12 +30,16 @@ public class Profesor {
     @JoinColumn(name = "ID_PERSONA", unique = true)
     private Persona persona;
 
-    public Profesor(long id, String biografia, long id_persona) {
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_ASIGNATURA", unique = true)
+    private Asignatura asignatura;
+
+    public Profesor(long id, String biografia, long id_persona, long id_asignatura) {
         this.id = id;
         this.biografia = biografia;
     }
 
     public ProfesorOutputDTO toProfesorOutputDTO() {
-        return new ProfesorOutputDTO(id, biografia, persona.toPersonaOutputDTO());
+        return new ProfesorOutputDTO(id, biografia, asignatura.getNombre() + " (ID: " + asignatura.getId() + ")", persona.toPersonaOutputDTO());
     }
 }

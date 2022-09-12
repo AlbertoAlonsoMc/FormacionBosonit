@@ -21,7 +21,7 @@ public class EstudianteServiceImp implements EstudianteService {
     PersonaRepository personaRepository;
 
     @Override
-    public EstudianteOutputDTO addEstudiante(EstudianteInputDTO estudianteInputDTO) {
+    public EstudianteOutputDTO addEstudiante(EstudianteInputDTO estudianteInputDTO) throws Exception {
         Persona persona = personaRepository.findById(estudianteInputDTO.getId_persona()).orElseThrow();
         Estudiante estudiante = estudianteInputDTO.toEstudiante();
         if (persona.getProfesor() == null) {
@@ -30,8 +30,9 @@ public class EstudianteServiceImp implements EstudianteService {
             estudianteRepository.save(estudiante);
             personaRepository.save(persona);
             return estudiante.toEstudianteOutputDTO();
+        } else {
+            throw new Exception("Esta persona es un profesor, no puede asignarse como estudiante");
         }
-        return null;
     }
 
     @Override

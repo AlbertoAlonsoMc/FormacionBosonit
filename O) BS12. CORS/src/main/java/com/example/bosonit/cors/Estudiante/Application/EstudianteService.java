@@ -6,7 +6,7 @@ import com.example.bosonit.cors.Estudiante.Infraestructure.DTOs.EstudianteOutput
 import java.util.List;
 
 public interface EstudianteService {
-    EstudianteOutputDTO addEstudiante(EstudianteInputDTO estudianteInputDTO);
+    EstudianteOutputDTO addEstudiante(EstudianteInputDTO estudianteInputDTO) throws Exception;
 
     String deleteEstudiante(long id);
 

@@ -1,5 +1,6 @@
 package com.example.bosonit.cors.Profesor.Infraestructure.Controller;
 
+import com.example.bosonit.cors.Asignatura.Domain.Asignatura;
 import com.example.bosonit.cors.Persona.Application.PersonaFeignClient;
 import com.example.bosonit.cors.Persona.Application.PersonaService;
 import com.example.bosonit.cors.Persona.Infraestructure.DTOs.PersonaInputDTO;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -27,7 +30,7 @@ public class ControllerProfesor {
     }
 
     @PostMapping("add")
-    public ProfesorOutputDTO addProfesor(@RequestBody @Valid ProfesorInputDTO profesorInputDTO) {
+    public ProfesorOutputDTO addProfesor(@RequestBody @Valid ProfesorInputDTO profesorInputDTO) throws Exception {
         return profesorService.addProfesor(profesorInputDTO);
     }
 

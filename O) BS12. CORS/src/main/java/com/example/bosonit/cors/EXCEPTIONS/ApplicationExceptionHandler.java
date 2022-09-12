@@ -1,4 +1,4 @@
-package com.example.bosonit.cors.Persona.Infraestructure.Exception;
+package com.example.bosonit.cors.EXCEPTIONS;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -26,14 +26,9 @@ public class ApplicationExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler({EmptyResultDataAccessException.class, NoSuchElementException.class})
     public String personaNoExiste() {
-        return "No existe ninguna persona con este ID";
+        return "Algún ID de los proporcionados no corresponde con ningún elemento";
     }
 
-    /*@ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(NoSuchElementException.class)
-    public String personaNoExiste2(NoSuchElementException ex) {
-        return "No existe ninguna persona con este ID";
-    }*/
 
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
     @ExceptionHandler(DataIntegrityViolationException.class)

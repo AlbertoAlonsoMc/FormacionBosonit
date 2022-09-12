@@ -23,7 +23,7 @@ public class ControllerEstudiante {
     }
 
     @PostMapping("add")
-    public EstudianteOutputDTO addEstudiante(@RequestBody @Valid EstudianteInputDTO estudianteInputDTO) {
+    public EstudianteOutputDTO addEstudiante(@RequestBody @Valid EstudianteInputDTO estudianteInputDTO) throws Exception {
         return estudianteService.addEstudiante(estudianteInputDTO);
     }
 

@@ -1,5 +1,6 @@
 package com.example.bosonit.cors.Profesor.Infraestructure.DTOs;
 
+import com.example.bosonit.cors.Asignatura.Infraestructure.DTOs.AsignaturaOutputDTO;
 import com.example.bosonit.cors.Persona.Infraestructure.DTOs.PersonaOutputDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,5 +18,6 @@ import java.util.Date;
 public class ProfesorOutputDTO {
     private long id;
     private String biografia;
+    private String asignatura;
     private PersonaOutputDTO personaOutputDTO;
 }

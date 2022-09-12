@@ -24,7 +24,10 @@ public class ProfesorInputDTO {
     @NotNull
     private long id_persona;
 
+    @NotNull
+    private long id_asignatura;
+
     public Profesor toProfesor() {
-        return new Profesor(0, biografia, id_persona);
+        return new Profesor(0, biografia, id_persona, id_asignatura);
     }
 }
