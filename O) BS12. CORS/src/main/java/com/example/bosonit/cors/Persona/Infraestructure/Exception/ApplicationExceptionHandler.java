@@ -24,16 +24,16 @@ public class ApplicationExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(EmptyResultDataAccessException.class)
-    public String personaNoExiste(EmptyResultDataAccessException ex) {
+    @ExceptionHandler({EmptyResultDataAccessException.class, NoSuchElementException.class})
+    public String personaNoExiste() {
         return "No existe ninguna persona con este ID";
     }
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    /*@ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NoSuchElementException.class)
     public String personaNoExiste2(NoSuchElementException ex) {
         return "No existe ninguna persona con este ID";
-    }
+    }*/
 
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
     @ExceptionHandler(DataIntegrityViolationException.class)
