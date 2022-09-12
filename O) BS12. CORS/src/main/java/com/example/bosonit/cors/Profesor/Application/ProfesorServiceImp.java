@@ -31,13 +31,6 @@ public class ProfesorServiceImp implements ProfesorService {
 
     @Override
     public ProfesorOutputDTO addProfesor(ProfesorInputDTO profesorInputDTO) throws Exception {
-
-
-        //TODO CREAR ASIGNATURAS PREDETERMINADAS EN ALGUN LADO
-        Asignatura asignaturaNueva = new Asignatura(0, "Mates", "Las matematicasss", new Date(2015, Calendar.JUNE, 5), new Date(2015, Calendar.JUNE, 5), null);
-        asignaturaRepository.save(asignaturaNueva);
-
-
         Persona persona = personaRepository.findById(profesorInputDTO.getId_persona()).orElseThrow();
         Asignatura asignatura = asignaturaRepository.findById(profesorInputDTO.getId_asignatura()).orElseThrow();
         Profesor profesor = profesorInputDTO.toProfesor();
