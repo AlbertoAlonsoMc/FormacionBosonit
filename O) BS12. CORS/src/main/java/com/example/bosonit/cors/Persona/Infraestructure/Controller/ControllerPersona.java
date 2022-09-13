@@ -11,7 +11,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("persona")
 @CrossOrigin(value = "*")
 public class ControllerPersona {
 
@@ -21,28 +20,29 @@ public class ControllerPersona {
     @Autowired
     PersonaFeignClient personaFeignClient;
 
-    @GetMapping("getAll")
+    @GetMapping("persona/getAll")
     public List<PersonaOutputDTO> getAll() {
         return personaService.mostrarTodas();
     }
 
-    @GetMapping("{nombre}")
+    @GetMapping("persona/{nombre}")
     public List<PersonaOutputDTO> buscarPorNombre(@PathVariable String nombre) {
         return personaService.buscarPorNombre(nombre);
     }
 
-    @GetMapping("getAllFeign")
+    @GetMapping("persona/getAllFeign")
     public List<PersonaOutputDTO> getAllFeign() {
         return personaFeignClient.getAll();
     }
 
 
-    @PostMapping("add")
+    @PostMapping("addperson") //Para que funcione tambien al añadirla desde el FRONT
     public PersonaOutputDTO addPersona(@RequestBody @Valid PersonaInputDTO personaInputDTO) {
         return personaService.addPersona(personaInputDTO);
     }
 
-    @DeleteMapping("delete/{id}")
+
+    @DeleteMapping("persona/delete/{id}")
     public String deletePersona(@PathVariable long id) {
         return personaService.deletePersona(id);
     }
