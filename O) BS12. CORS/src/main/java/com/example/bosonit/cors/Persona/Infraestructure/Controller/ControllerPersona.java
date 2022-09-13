@@ -26,6 +26,11 @@ public class ControllerPersona {
         return personaService.mostrarTodas();
     }
 
+    @GetMapping("{nombre}")
+    public List<PersonaOutputDTO> buscarPorNombre(@PathVariable String nombre) {
+        return personaService.buscarPorNombre(nombre);
+    }
+
     @GetMapping("getAllFeign")
     public List<PersonaOutputDTO> getAllFeign() {
         return personaFeignClient.getAll();

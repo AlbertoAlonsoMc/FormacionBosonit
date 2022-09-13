@@ -32,4 +32,9 @@ public class PersonaServiceImp implements PersonaService {
     public List<PersonaOutputDTO> mostrarTodas() {
         return personaRepository.findAll().stream().map(Persona::toPersonaOutputDTO).toList();
     }
+
+    @Override
+    public List<PersonaOutputDTO> buscarPorNombre(String nombre) {
+        return personaRepository.findByNombre(nombre);
+    }
 }

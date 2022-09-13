@@ -12,4 +12,6 @@ public interface PersonaService {
     String deletePersona(long id);
 
     List<PersonaOutputDTO> mostrarTodas();
+
+    List<PersonaOutputDTO> buscarPorNombre(String nombre);
 }
