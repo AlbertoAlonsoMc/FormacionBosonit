@@ -10,7 +10,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "ESTUDIANTES")
@@ -34,13 +36,13 @@ public class Estudiante {
     private Persona persona;
 
     @ManyToMany(mappedBy = "estudiantes")
-    private List<Asignatura> asignaturas;
+    private Set<Asignatura> asignaturas;
 
     public Estudiante(long id, String biografia, int horas_semana, long id_persona) {
         this.id = id;
         this.biografia = biografia;
         this.horas_semana = horas_semana;
-        asignaturas = new ArrayList<>();
+        asignaturas = new HashSet<>();
     }
 
     public EstudianteOutputDTO toEstudianteOutputDTO() {
