@@ -62,7 +62,7 @@ public class EstudianteServiceImp implements EstudianteService {
     }
 
     @Override
-    public AsignaturaOutputDTO asignarAsignatura(@PathVariable long idEstudiante, @PathVariable long idAsignatura) {
+    public AsignaturaOutputDTO asignarAsignatura(long idEstudiante, long idAsignatura) {
         Asignatura asignatura = asignaturaRepository.findById(idAsignatura).orElseThrow();
         Estudiante estudiante = estudianteRepository.findById(idEstudiante).orElseThrow();
         asignatura.getEstudiantes().add(estudiante);
@@ -70,5 +70,19 @@ public class EstudianteServiceImp implements EstudianteService {
         asignaturaRepository.save(asignatura);
         estudianteRepository.save(estudiante);
         return asignatura.toAsignaturaOutputDTO();
+    }
+
+    @Override
+    public String desasignarAsignatura(long idEstudiante, long idAsignatura) {
+        Asignatura asignatura = asignaturaRepository.findById(idAsignatura).orElseThrow();
+        Estudiante estudiante = estudianteRepository.findById(idEstudiante).orElseThrow();
+        if (estudiante.getAsignaturas().contains(asignatura)) {
+            asignatura.getEstudiantes().remove(estudiante);
+            estudiante.getAsignaturas().remove(asignatura);
+            asignaturaRepository.save(asignatura);
+            estudianteRepository.save(estudiante);
+            return asignatura.getNombre() + " eliminada de la lista correctamente";
+        }
+        return "El estudiante no tiene asociada esta asignatura";
     }
 }

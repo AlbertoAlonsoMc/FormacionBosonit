@@ -17,4 +17,6 @@ public interface EstudianteService {
     Object buscarPorId(long id, String outputType);
 
     AsignaturaOutputDTO asignarAsignatura(@PathVariable long idEstudiante, @PathVariable long idAsignatura);
+
+    String desasignarAsignatura(@PathVariable long idEstudiante, @PathVariable long idAsignatura);
 }

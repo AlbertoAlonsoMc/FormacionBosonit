@@ -38,6 +38,11 @@ public class ControllerEstudiante {
         return estudianteService.asignarAsignatura(idEstudiante, idAsignatura);
     }
 
+    @DeleteMapping("{idEstudiante}/desasignarAsignatura/{idAsignatura}")
+    public String desasignarAsignatura(@PathVariable long idEstudiante, @PathVariable long idAsignatura) {
+        return estudianteService.desasignarAsignatura(idEstudiante, idAsignatura);
+    }
+
     @DeleteMapping("delete/{id}")
     public String deleteEstudiante(@PathVariable long id) {
         return estudianteService.deleteEstudiante(id);
