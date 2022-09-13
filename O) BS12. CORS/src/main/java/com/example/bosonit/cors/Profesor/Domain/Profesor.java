@@ -2,14 +2,14 @@ package com.example.bosonit.cors.Profesor.Domain;
 
 import com.example.bosonit.cors.Asignatura.Domain.Asignatura;
 import com.example.bosonit.cors.Persona.Domain.Persona;
-import com.example.bosonit.cors.Profesor.Infraestructure.DTOs.ProfesorOutputDTO;
+import com.example.bosonit.cors.Profesor.Infraestructure.DTOs.ProfesorFullOutputDTO;
+import com.example.bosonit.cors.Profesor.Infraestructure.DTOs.ProfesorSimpleOutputDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "PROFESORES")
@@ -39,7 +39,11 @@ public class Profesor {
         this.biografia = biografia;
     }
 
-    public ProfesorOutputDTO toProfesorOutputDTO() {
-        return new ProfesorOutputDTO(id, biografia, asignatura.getNombre() + " (ID: " + asignatura.getId() + ")", persona.toPersonaOutputDTO());
+    public ProfesorFullOutputDTO toProfesorFullOutputDTO() {
+        return new ProfesorFullOutputDTO(id, biografia, asignatura.getNombre() + " (ID: " + asignatura.getId() + ")", persona.toPersonaOutputDTO());
+    }
+
+    public ProfesorSimpleOutputDTO toProfesorSimpleOutputDTO() {
+        return new ProfesorSimpleOutputDTO(id, biografia, asignatura.getNombre() + " (ID: " + asignatura.getId() + ")");
     }
 }

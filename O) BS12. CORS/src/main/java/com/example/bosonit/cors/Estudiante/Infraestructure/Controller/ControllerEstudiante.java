@@ -3,7 +3,7 @@ package com.example.bosonit.cors.Estudiante.Infraestructure.Controller;
 import com.example.bosonit.cors.Asignatura.Infraestructure.DTOs.AsignaturaOutputDTO;
 import com.example.bosonit.cors.Estudiante.Application.EstudianteService;
 import com.example.bosonit.cors.Estudiante.Infraestructure.DTOs.EstudianteInputDTO;
-import com.example.bosonit.cors.Estudiante.Infraestructure.DTOs.EstudianteOutputDTO;
+import com.example.bosonit.cors.Estudiante.Infraestructure.DTOs.EstudianteFullOutputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +19,17 @@ public class ControllerEstudiante {
     EstudianteService estudianteService;
 
     @GetMapping("getAll")
-    public List<EstudianteOutputDTO> getAll() {
+    public List<EstudianteFullOutputDTO> getAll() {
         return estudianteService.mostrarTodos();
     }
 
+    @GetMapping("{id}")
+    public Object buscarPorId(@PathVariable long id, @RequestParam(required = false, defaultValue = "simple") String outputType) {
+        return estudianteService.buscarPorId(id, outputType);
+    }
+
     @PostMapping("add")
-    public EstudianteOutputDTO addEstudiante(@RequestBody @Valid EstudianteInputDTO estudianteInputDTO) throws Exception {
+    public EstudianteFullOutputDTO addEstudiante(@RequestBody @Valid EstudianteInputDTO estudianteInputDTO) throws Exception {
         return estudianteService.addEstudiante(estudianteInputDTO);
     }
 

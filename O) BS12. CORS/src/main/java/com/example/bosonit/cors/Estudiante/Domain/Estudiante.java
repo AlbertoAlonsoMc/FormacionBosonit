@@ -1,7 +1,8 @@
 package com.example.bosonit.cors.Estudiante.Domain;
 
 import com.example.bosonit.cors.Asignatura.Domain.Asignatura;
-import com.example.bosonit.cors.Estudiante.Infraestructure.DTOs.EstudianteOutputDTO;
+import com.example.bosonit.cors.Estudiante.Infraestructure.DTOs.EstudianteFullOutputDTO;
+import com.example.bosonit.cors.Estudiante.Infraestructure.DTOs.EstudianteSimpleOutputDTO;
 import com.example.bosonit.cors.Persona.Domain.Persona;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -45,7 +44,11 @@ public class Estudiante {
         asignaturas = new HashSet<>();
     }
 
-    public EstudianteOutputDTO toEstudianteOutputDTO() {
-        return new EstudianteOutputDTO(id, biografia, horas_semana, asignaturas.stream().map(Asignatura::getNombre).toList(), persona.toPersonaOutputDTO());
+    public EstudianteFullOutputDTO toEstudianteFullOutputDTO() {
+        return new EstudianteFullOutputDTO(id, biografia, horas_semana, asignaturas.stream().map(Asignatura::getNombre).toList(), persona.toPersonaOutputDTO());
+    }
+
+    public EstudianteSimpleOutputDTO toEstudianteSimpleOutputDTO() {
+        return new EstudianteSimpleOutputDTO(id, biografia, horas_semana, asignaturas.stream().map(Asignatura::getNombre).toList());
     }
 }

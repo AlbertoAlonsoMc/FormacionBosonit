@@ -1,6 +1,6 @@
 package com.example.bosonit.cors.Asignatura.Infraestructure.DTOs;
 
-import com.example.bosonit.cors.Profesor.Infraestructure.DTOs.ProfesorOutputDTO;
+import com.example.bosonit.cors.Profesor.Infraestructure.DTOs.ProfesorFullOutputDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +18,5 @@ public class AsignaturaOutputDTO {
     private String descripcion;
     private Date fechaInicial;
     private Date fechaFinal;
-    private ProfesorOutputDTO profesorOutputDTO;
+    private ProfesorFullOutputDTO profesorFullOutputDTO;
 }

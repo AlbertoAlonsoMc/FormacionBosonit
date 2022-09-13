@@ -5,7 +5,7 @@ import com.example.bosonit.cors.Asignatura.Infraestructure.DTOs.AsignaturaOutput
 import com.example.bosonit.cors.Asignatura.Infraestructure.Repository.AsignaturaRepository;
 import com.example.bosonit.cors.Estudiante.Domain.Estudiante;
 import com.example.bosonit.cors.Estudiante.Infraestructure.DTOs.EstudianteInputDTO;
-import com.example.bosonit.cors.Estudiante.Infraestructure.DTOs.EstudianteOutputDTO;
+import com.example.bosonit.cors.Estudiante.Infraestructure.DTOs.EstudianteFullOutputDTO;
 import com.example.bosonit.cors.Estudiante.Infraestructure.Repository.EstudianteRepository;
 import com.example.bosonit.cors.Persona.Domain.Persona;
 import com.example.bosonit.cors.Persona.Infraestructure.Repository.PersonaRepository;
@@ -28,7 +28,7 @@ public class EstudianteServiceImp implements EstudianteService {
     AsignaturaRepository asignaturaRepository;
 
     @Override
-    public EstudianteOutputDTO addEstudiante(EstudianteInputDTO estudianteInputDTO) throws Exception {
+    public EstudianteFullOutputDTO addEstudiante(EstudianteInputDTO estudianteInputDTO) throws Exception {
         Persona persona = personaRepository.findById(estudianteInputDTO.getId_persona()).orElseThrow();
         Estudiante estudiante = estudianteInputDTO.toEstudiante();
         if (persona.getProfesor() == null) {
@@ -36,7 +36,7 @@ public class EstudianteServiceImp implements EstudianteService {
             persona.setEstudiante(estudiante);
             estudianteRepository.save(estudiante);
             personaRepository.save(persona);
-            return estudiante.toEstudianteOutputDTO();
+            return estudiante.toEstudianteFullOutputDTO();
         } else {
             throw new Exception("Esta persona es un profesor, no puede asignarse como estudiante");
         }
@@ -49,8 +49,16 @@ public class EstudianteServiceImp implements EstudianteService {
     }
 
     @Override
-    public List<EstudianteOutputDTO> mostrarTodos() {
-        return estudianteRepository.findAll().stream().map(Estudiante::toEstudianteOutputDTO).toList();
+    public List<EstudianteFullOutputDTO> mostrarTodos() {
+        return estudianteRepository.findAll().stream().map(Estudiante::toEstudianteFullOutputDTO).toList();
+    }
+
+    @Override
+    public Object buscarPorId(long id, String outputType) {
+        return switch (outputType) {
+            case "full" -> estudianteRepository.findById(id).orElseThrow().toEstudianteFullOutputDTO();
+            default -> estudianteRepository.findById(id).orElseThrow().toEstudianteSimpleOutputDTO();
+        };
     }
 
     @Override

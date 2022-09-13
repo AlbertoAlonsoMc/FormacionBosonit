@@ -6,15 +6,12 @@ import com.example.bosonit.cors.Persona.Domain.Persona;
 import com.example.bosonit.cors.Persona.Infraestructure.Repository.PersonaRepository;
 import com.example.bosonit.cors.Profesor.Domain.Profesor;
 import com.example.bosonit.cors.Profesor.Infraestructure.DTOs.ProfesorInputDTO;
-import com.example.bosonit.cors.Profesor.Infraestructure.DTOs.ProfesorOutputDTO;
+import com.example.bosonit.cors.Profesor.Infraestructure.DTOs.ProfesorFullOutputDTO;
 import com.example.bosonit.cors.Profesor.Infraestructure.Repository.ProfesorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProfesorServiceImp implements ProfesorService {
@@ -30,7 +27,7 @@ public class ProfesorServiceImp implements ProfesorService {
 
 
     @Override
-    public ProfesorOutputDTO addProfesor(ProfesorInputDTO profesorInputDTO) throws Exception {
+    public ProfesorFullOutputDTO addProfesor(ProfesorInputDTO profesorInputDTO) throws Exception {
         Persona persona = personaRepository.findById(profesorInputDTO.getId_persona()).orElseThrow();
         Asignatura asignatura = asignaturaRepository.findById(profesorInputDTO.getId_asignatura()).orElseThrow();
         Profesor profesor = profesorInputDTO.toProfesor();
@@ -42,7 +39,7 @@ public class ProfesorServiceImp implements ProfesorService {
             profesorRepository.save(profesor);
             personaRepository.save(persona);
             asignaturaRepository.save(asignatura);
-            return profesor.toProfesorOutputDTO();
+            return profesor.toProfesorFullOutputDTO();
         } else {
             throw new Exception("Esta persona es un estudiante, no puede asignarse como profesor");
         }
@@ -55,7 +52,15 @@ public class ProfesorServiceImp implements ProfesorService {
     }
 
     @Override
-    public List<ProfesorOutputDTO> mostrarTodos() {
-        return profesorRepository.findAll().stream().map(Profesor::toProfesorOutputDTO).toList();
+    public List<ProfesorFullOutputDTO> mostrarTodos() {
+        return profesorRepository.findAll().stream().map(Profesor::toProfesorFullOutputDTO).toList();
+    }
+
+    @Override
+    public Object buscarPorId(long id, String outputType) {
+        return switch (outputType) {
+            case "full" -> profesorRepository.findById(id).orElseThrow().toProfesorFullOutputDTO();
+            default -> profesorRepository.findById(id).orElseThrow().toProfesorSimpleOutputDTO();
+        };
     }
 }
