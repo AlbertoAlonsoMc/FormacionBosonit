@@ -38,6 +38,15 @@ public class PersonaRepoImpl {
                         case EQUAL -> predicates.add(cb.equal(root.<Date>get(field), (Date) value));
                     }
                 }
+                case "ordenar" -> {
+                    String tipo = (String) conditions.get("ordenar");
+                    switch (tipo) {
+                        case "name":
+                            query.orderBy(cb.asc(root.get(tipo)));
+                        case "usuario":
+                            query.orderBy(cb.asc(root.get(tipo)));
+                    }
+                }
             }
         });
         query.select(root).where(predicates.toArray(new Predicate[predicates.size()]));

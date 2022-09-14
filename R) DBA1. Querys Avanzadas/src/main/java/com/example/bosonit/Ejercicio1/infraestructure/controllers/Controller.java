@@ -71,8 +71,9 @@ public class Controller {
                                                 @RequestParam(name = "surname", required = false) String surname,
                                                 @RequestParam(name = "name", required = false) String name,
                                                 @RequestParam(name = "created_date", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date createdDate,
-                                                @RequestParam(required = false) String dateCondition) {
+                                                @RequestParam(name = "date_condition", required = false) String dateCondition,
+                                                @RequestParam(name = "ordenar", required = false) String ordenar) {
 
-        return personaService.getData(usuario, surname, name, createdDate, dateCondition);
+        return personaService.getData(usuario, surname, name, createdDate, dateCondition, ordenar);
     }
 }
