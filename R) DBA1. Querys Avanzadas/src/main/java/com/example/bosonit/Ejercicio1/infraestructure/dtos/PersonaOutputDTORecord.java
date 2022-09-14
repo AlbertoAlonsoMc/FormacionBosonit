@@ -1,4 +1,4 @@
-package com.example.bosonit.Ejercicio1.infraestructure;
+package com.example.bosonit.Ejercicio1.infraestructure.dtos;
 
 import java.util.Date;
 

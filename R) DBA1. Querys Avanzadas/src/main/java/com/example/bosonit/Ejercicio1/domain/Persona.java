@@ -1,6 +1,6 @@
 package com.example.bosonit.Ejercicio1.domain;
 
-import com.example.bosonit.Ejercicio1.infraestructure.PersonaOutputDTORecord;
+import com.example.bosonit.Ejercicio1.infraestructure.dtos.PersonaOutputDTORecord;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

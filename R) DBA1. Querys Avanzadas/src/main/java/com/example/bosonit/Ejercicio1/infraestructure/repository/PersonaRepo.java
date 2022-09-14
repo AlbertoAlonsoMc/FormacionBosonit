@@ -1,4 +1,4 @@
-package com.example.bosonit.Ejercicio1.application;
+package com.example.bosonit.Ejercicio1.infraestructure.repository;
 
 import com.example.bosonit.Ejercicio1.domain.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;

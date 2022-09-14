@@ -1,7 +1,6 @@
-package com.example.bosonit.Ejercicio1.infraestructure;
+package com.example.bosonit.Ejercicio1.infraestructure.dtos;
 
 import com.example.bosonit.Ejercicio1.domain.Persona;
-import org.modelmapper.ModelMapper;
 
 import java.util.Date;
 import java.util.regex.Matcher;

@@ -1,8 +1,9 @@
 package com.example.bosonit.Ejercicio1.application;
 
 import com.example.bosonit.Ejercicio1.domain.Persona;
-import com.example.bosonit.Ejercicio1.infraestructure.PersonaInputDTORecord;
-import com.example.bosonit.Ejercicio1.infraestructure.PersonaOutputDTORecord;
+import com.example.bosonit.Ejercicio1.infraestructure.dtos.PersonaInputDTORecord;
+import com.example.bosonit.Ejercicio1.infraestructure.dtos.PersonaOutputDTORecord;
+import com.example.bosonit.Ejercicio1.infraestructure.repository.PersonaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

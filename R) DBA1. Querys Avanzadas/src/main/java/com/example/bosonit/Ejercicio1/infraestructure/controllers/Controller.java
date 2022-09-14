@@ -1,8 +1,8 @@
 package com.example.bosonit.Ejercicio1.infraestructure.controllers;
 
 import com.example.bosonit.Ejercicio1.application.PersonaService;
-import com.example.bosonit.Ejercicio1.infraestructure.PersonaInputDTORecord;
-import com.example.bosonit.Ejercicio1.infraestructure.PersonaOutputDTORecord;
+import com.example.bosonit.Ejercicio1.infraestructure.dtos.PersonaInputDTORecord;
+import com.example.bosonit.Ejercicio1.infraestructure.dtos.PersonaOutputDTORecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
