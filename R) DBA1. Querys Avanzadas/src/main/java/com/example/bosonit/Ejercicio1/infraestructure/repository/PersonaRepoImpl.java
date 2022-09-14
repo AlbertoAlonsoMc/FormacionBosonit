@@ -20,7 +20,8 @@ public class PersonaRepoImpl {
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<PersonaOutputDTORecord> getData(HashMap<String, Object> conditions) {
+    public List<PersonaOutputDTORecord> getData(HashMap<String, Object> conditions, int pagina) {
+        int maxResults = 10;
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Persona> query = cb.createQuery(Persona.class);
         Root<Persona> root = query.from(Persona.class);
@@ -50,6 +51,6 @@ public class PersonaRepoImpl {
             }
         });
         query.select(root).where(predicates.toArray(new Predicate[predicates.size()]));
-        return entityManager.createQuery(query).getResultList().stream().map(Persona::toPersonaOutputDTORecord).toList();
+        return entityManager.createQuery(query).setMaxResults(maxResults).setFirstResult((pagina - 1) * maxResults).getResultList().stream().map(Persona::toPersonaOutputDTORecord).toList();
     }
 }

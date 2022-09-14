@@ -20,5 +20,5 @@ public interface PersonaService {
 
     List<PersonaOutputDTORecord> mostrarTodos();
 
-    List<PersonaOutputDTORecord> getData(String usuario, String surname, String name, @DateTimeFormat(pattern = "dd-MM-yyyy") Date createdDate, String dateCondition, String ordenar);
+    List<PersonaOutputDTORecord> getData(String usuario, String surname, String name, @DateTimeFormat(pattern = "dd-MM-yyyy") Date createdDate, String dateCondition, String ordenar, int pagina);
 }

@@ -69,7 +69,7 @@ public class PersonaServiceImp implements PersonaService {
     }
 
     @Override
-    public List<PersonaOutputDTORecord> getData(String usuario, String surname, String name, @DateTimeFormat(pattern = "dd-MM-yyyy") Date createdDate, String dateCondition, String ordenar) {
+    public List<PersonaOutputDTORecord> getData(String usuario, String surname, String name, @DateTimeFormat(pattern = "dd-MM-yyyy") Date createdDate, String dateCondition, String ordenar, int pagina) {
         HashMap<String, Object> data = new HashMap<>();
 
         if (usuario != null)
@@ -90,7 +90,7 @@ public class PersonaServiceImp implements PersonaService {
             data.put("ordenar", ordenar);
         }
 
-        return personaRepo.getData(data);
+        return personaRepo.getData(data, pagina);
     }
 
 }

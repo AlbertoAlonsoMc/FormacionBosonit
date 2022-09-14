@@ -66,14 +66,15 @@ public class Controller {
         return personaService.mostrarTodos();
     }
 
-    @GetMapping("getData")
+    @GetMapping("getData/{pagina}")
     public List<PersonaOutputDTORecord> getData(@RequestParam(name = "usuario", required = false) String usuario,
                                                 @RequestParam(name = "surname", required = false) String surname,
                                                 @RequestParam(name = "name", required = false) String name,
                                                 @RequestParam(name = "created_date", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date createdDate,
                                                 @RequestParam(name = "date_condition", required = false) String dateCondition,
-                                                @RequestParam(name = "ordenar", required = false) String ordenar) {
+                                                @RequestParam(name = "ordenar", required = false) String ordenar,
+                                                @PathVariable int pagina) {
 
-        return personaService.getData(usuario, surname, name, createdDate, dateCondition, ordenar);
+        return personaService.getData(usuario, surname, name, createdDate, dateCondition, ordenar, pagina);
     }
 }

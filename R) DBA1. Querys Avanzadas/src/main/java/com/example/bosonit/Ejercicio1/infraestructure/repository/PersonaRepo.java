@@ -13,6 +13,6 @@ public interface PersonaRepo extends JpaRepository<Persona, Integer> {
 
     List<Persona> findByUsuario(String usuario);
 
-    List<PersonaOutputDTORecord> getData(HashMap<String, Object> conditions);
+    List<PersonaOutputDTORecord> getData(HashMap<String, Object> conditions, int pagina);
 
 }
