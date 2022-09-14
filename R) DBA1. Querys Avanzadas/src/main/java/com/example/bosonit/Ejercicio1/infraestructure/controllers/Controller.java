@@ -3,17 +3,13 @@ package com.example.bosonit.Ejercicio1.infraestructure.controllers;
 import com.example.bosonit.Ejercicio1.application.PersonaService;
 import com.example.bosonit.Ejercicio1.infraestructure.dtos.PersonaInputDTORecord;
 import com.example.bosonit.Ejercicio1.infraestructure.dtos.PersonaOutputDTORecord;
-import com.example.bosonit.Ejercicio1.infraestructure.repository.PersonaRepo;
-import com.example.bosonit.Ejercicio1.infraestructure.repository.PersonaRepoImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 @RestController

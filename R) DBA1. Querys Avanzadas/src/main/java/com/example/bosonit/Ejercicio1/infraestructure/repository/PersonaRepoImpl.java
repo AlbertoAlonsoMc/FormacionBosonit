@@ -16,7 +16,7 @@ import java.util.List;
 
 import static com.example.bosonit.Ejercicio1.infraestructure.controllers.Controller.*;
 
-public class PersonaRepoImp {
+public class PersonaRepoImpl {
     @PersistenceContext
     EntityManager entityManager;
 
@@ -29,7 +29,7 @@ public class PersonaRepoImp {
         conditions.forEach((field, value) ->
         {
             switch (field) {
-                case "usuario", "surname", "name" -> predicates.add(cb.like(root.get(field), "%" + value + "%"));
+                case "usuario", "surname", "name" -> predicates.add(cb.equal(root.get(field), value));
                 case "created_date" -> {
                     String dateCondition = (String) conditions.get("dateCondition");
                     switch (dateCondition) {
@@ -43,6 +43,4 @@ public class PersonaRepoImp {
         query.select(root).where(predicates.toArray(new Predicate[predicates.size()]));
         return entityManager.createQuery(query).getResultList().stream().map(Persona::toPersonaOutputDTORecord).toList();
     }
-
-
 }
