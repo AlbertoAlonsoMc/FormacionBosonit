@@ -26,10 +26,6 @@ public class Controller {
     @Autowired
     PersonaService personaService;
 
-    @Autowired
-    PersonaRepo personaRepository;
-
-
     @PostMapping("add")
     public PersonaOutputDTORecord postPersona(@RequestBody PersonaInputDTORecord personaInputDTORecord) throws Exception {
         return personaService.anadirPersona(personaInputDTORecord);
@@ -76,27 +72,11 @@ public class Controller {
 
     @GetMapping("getData")
     public List<PersonaOutputDTORecord> getData(@RequestParam(name = "usuario", required = false) String usuario,
-                                                @RequestParam(name = "surname", required = false) String name,
-                                                @RequestParam(name = "name", required = false) String surname,
+                                                @RequestParam(name = "surname", required = false) String surname,
+                                                @RequestParam(name = "name", required = false) String name,
                                                 @RequestParam(name = "created_date", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date createdDate,
                                                 @RequestParam(required = false) String dateCondition) {
-        HashMap<String, Object> data = new HashMap<>();
 
-        if (usuario != null)
-            data.put("usuario", usuario);
-        if (surname != null)
-            data.put("surname", surname);
-        if (name != null)
-            data.put("name", name);
-        if (dateCondition == null)
-            dateCondition = GREATER_THAN;
-        if (!dateCondition.equals(GREATER_THAN) && !dateCondition.equals(LESS_THAN) && !dateCondition.equals(EQUAL))
-            dateCondition = GREATER_THAN;
-        if (createdDate != null) {
-            data.put("created_date", createdDate);
-            data.put("dateCondition", dateCondition);
-        }
-
-        return personaRepository.getData(data);
+        return personaService.getData(usuario, surname, name, createdDate, dateCondition);
     }
 }

@@ -5,9 +5,14 @@ import com.example.bosonit.Ejercicio1.infraestructure.dtos.PersonaInputDTORecord
 import com.example.bosonit.Ejercicio1.infraestructure.dtos.PersonaOutputDTORecord;
 import com.example.bosonit.Ejercicio1.infraestructure.repository.PersonaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import static com.example.bosonit.Ejercicio1.infraestructure.controllers.Controller.*;
 
 @Service
 public class PersonaServiceImp implements PersonaService {
@@ -62,4 +67,27 @@ public class PersonaServiceImp implements PersonaService {
     public List<PersonaOutputDTORecord> mostrarTodos() {
         return personaRepo.findAll().stream().map(Persona::toPersonaOutputDTORecord).toList();
     }
+
+    @Override
+    public List<PersonaOutputDTORecord> getData(String usuario, String surname, String name, @DateTimeFormat(pattern = "dd-MM-yyyy") Date createdDate, String dateCondition) {
+        HashMap<String, Object> data = new HashMap<>();
+
+        if (usuario != null)
+            data.put("usuario", usuario);
+        if (surname != null)
+            data.put("surname", surname);
+        if (name != null)
+            data.put("name", name);
+        if (dateCondition == null)
+            dateCondition = GREATER_THAN;
+        if (!dateCondition.equals(GREATER_THAN) && !dateCondition.equals(LESS_THAN) && !dateCondition.equals(EQUAL))
+            dateCondition = GREATER_THAN;
+        if (createdDate != null) {
+            data.put("created_date", createdDate);
+            data.put("dateCondition", dateCondition);
+        }
+
+        return personaRepo.getData(data);
+    }
+
 }
