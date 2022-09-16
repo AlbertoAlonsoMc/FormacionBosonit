@@ -6,13 +6,13 @@ import com.example.bosonit.DBA2.MongoDB.infraestructure.dtos.PersonaOutputDTORec
 import java.util.List;
 
 public interface PersonaService {
-    PersonaOutputDTORecord anadirPersona(PersonaInputDTORecord personaInputDTORecord) throws Exception;
+    PersonaOutputDTORecord anadirPersona(PersonaInputDTORecord personaInputDTORecord);
 
-    PersonaOutputDTORecord modificarPersona(int id, PersonaInputDTORecord personaInputDTORecord) throws Exception;
+    //PersonaOutputDTORecord modificarPersona(String id, PersonaInputDTORecord personaInputDTORecord) throws Exception;
 
-    boolean borrarPersona(int id);
+    boolean borrarPersona(String id);
 
-    PersonaOutputDTORecord buscarPorID(int id);
+    PersonaOutputDTORecord buscarPorID(String id);
 
     List<PersonaOutputDTORecord> buscarPorUsuario(String usuario);
 

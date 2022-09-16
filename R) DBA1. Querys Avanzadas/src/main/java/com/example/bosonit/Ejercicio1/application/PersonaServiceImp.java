@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import static com.example.bosonit.Ejercicio1.infraestructure.controllers.Controller.*;
 
@@ -32,7 +33,7 @@ public class PersonaServiceImp implements PersonaService {
         if (personaRepo.findById(id).isPresent()) {
             Persona persona;
             persona = personaInputDTORecord.toPersona();
-            persona.setId(id);
+            Objects.requireNonNull(persona).setId(id);
             personaRepo.save(persona);
             return persona.toPersonaOutputDTORecord();
         } else {

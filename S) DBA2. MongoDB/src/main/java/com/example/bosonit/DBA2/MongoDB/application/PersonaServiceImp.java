@@ -3,6 +3,7 @@ package com.example.bosonit.DBA2.MongoDB.application;
 import com.example.bosonit.DBA2.MongoDB.domain.Persona;
 import com.example.bosonit.DBA2.MongoDB.infraestructure.dtos.PersonaInputDTORecord;
 import com.example.bosonit.DBA2.MongoDB.infraestructure.dtos.PersonaOutputDTORecord;
+import com.example.bosonit.DBA2.MongoDB.infraestructure.repository.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,44 +13,40 @@ import java.util.List;
 public class PersonaServiceImp implements PersonaService {
 
     @Autowired
-    PersonaRepo personaRepo;
+    PersonaRepository personaRepo;
 
     @Override
-    public PersonaOutputDTORecord anadirPersona(PersonaInputDTORecord personaInputDTORecord) throws Exception {
+    public PersonaOutputDTORecord anadirPersona(PersonaInputDTORecord personaInputDTORecord) {
         Persona persona = personaInputDTORecord.toPersona();
         personaRepo.save(persona);
         return persona.toPersonaOutputDTORecord();
     }
 
-    @Override
-    public PersonaOutputDTORecord modificarPersona(int id, PersonaInputDTORecord personaInputDTORecord) throws Exception {
-        if (personaRepo.findById(id).isPresent()) {
-            Persona persona;
-            persona = personaInputDTORecord.toPersona();
-            persona.setId(id);
-            personaRepo.save(persona);
-            return persona.toPersonaOutputDTORecord();
-        } else {
-            return null;
-        }
-    }
+    /*@Override
+    public PersonaOutputDTORecord modificarPersona(String id, PersonaInputDTORecord personaInputDTORecord) {
+        Persona persona = personaRepo.findById(id);
+        persona = personaInputDTORecord.toPersona();
+        persona.setId(id);
+        personaRepo.save(persona);
+        return persona.toPersonaOutputDTORecord();
+    }*/
 
     @Override
-    public boolean borrarPersona(int id) {
-        if (personaRepo.findById(id).isPresent()) {
-            personaRepo.deleteById(id);
-            return true;
-        } else {
-            return false;
+    public boolean borrarPersona(String id) {
+        Persona persona = personaRepo.findById(id);
+        boolean borrado = false;
+        if (persona != null) {
+            personaRepo.delete(persona);
+            borrado = true;
         }
+        return borrado;
     }
 
 
     @Override
-    public PersonaOutputDTORecord buscarPorID(int id) {
-        Persona persona;
-        persona = personaRepo.findById(id).orElse(null);
-        return persona != null ? persona.toPersonaOutputDTORecord() : null;
+    public PersonaOutputDTORecord buscarPorID(String id) {
+        Persona persona = personaRepo.findById(id);
+        return persona.toPersonaOutputDTORecord();
     }
 
     @Override

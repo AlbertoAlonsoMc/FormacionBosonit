@@ -4,6 +4,8 @@ import com.example.bosonit.DBA2.MongoDB.infraestructure.dtos.PersonaOutputDTORec
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
@@ -11,9 +13,10 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Document
 public class Persona {
-
-    private int id;
+    @Id
+    private String id;
 
     private String usuario, password, name, company_email, personal_email, city;
 
