@@ -1,4 +1,5 @@
 spring:
   data:
     mongodb:
-      uri: 'mongodb+srv://m001-student:m001-mongodb-basics@sandbox.1dqkhwx.mongodb.net/tests?retryWrites=true&w=majority'
+      database: DBA2
+      uri: mongodb+srv://m001-student:m001-mongodb-basics@sandbox.1dqkhwx.mongodb.net/?retryWrites=true&w=majority
