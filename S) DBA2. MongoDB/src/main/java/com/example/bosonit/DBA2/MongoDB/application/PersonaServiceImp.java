@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonaServiceImp implements PersonaService {
@@ -22,36 +23,30 @@ public class PersonaServiceImp implements PersonaService {
         return persona.toPersonaOutputDTORecord();
     }
 
-    /*@Override
+    @Override
     public PersonaOutputDTORecord modificarPersona(String id, PersonaInputDTORecord personaInputDTORecord) {
-        Persona persona = personaRepo.findById(id);
-        persona = personaInputDTORecord.toPersona();
-        persona.setId(id);
+        Persona persona = personaInputDTORecord.toPersona();
+        persona.setId(Optional.ofNullable(personaRepo.findById(id)).orElseThrow().getId());
         personaRepo.save(persona);
         return persona.toPersonaOutputDTORecord();
-    }*/
+    }
 
     @Override
-    public boolean borrarPersona(String id) {
-        Persona persona = personaRepo.findById(id);
-        boolean borrado = false;
-        if (persona != null) {
-            personaRepo.delete(persona);
-            borrado = true;
-        }
-        return borrado;
+    public String borrarPersona(String id) {
+        personaRepo.delete(Optional.ofNullable(personaRepo.findById(id)).orElseThrow());
+        return "Usuario con id " + id + " borrado";
     }
 
 
     @Override
     public PersonaOutputDTORecord buscarPorID(String id) {
-        Persona persona = personaRepo.findById(id);
+        Persona persona = Optional.ofNullable(personaRepo.findById(id)).orElseThrow();
         return persona.toPersonaOutputDTORecord();
     }
 
     @Override
     public List<PersonaOutputDTORecord> buscarPorUsuario(String usuario) {
-        return personaRepo.findByUsuario(usuario).stream().map(Persona::toPersonaOutputDTORecord).toList();
+        return Optional.ofNullable(personaRepo.findByUsuario(usuario)).orElseThrow().stream().map(Persona::toPersonaOutputDTORecord).toList();
     }
 
     @Override

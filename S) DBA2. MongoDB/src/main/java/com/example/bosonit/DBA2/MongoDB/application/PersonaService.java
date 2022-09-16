@@ -8,9 +8,9 @@ import java.util.List;
 public interface PersonaService {
     PersonaOutputDTORecord anadirPersona(PersonaInputDTORecord personaInputDTORecord);
 
-    //PersonaOutputDTORecord modificarPersona(String id, PersonaInputDTORecord personaInputDTORecord) throws Exception;
+    PersonaOutputDTORecord modificarPersona(String id, PersonaInputDTORecord personaInputDTORecord);
 
-    boolean borrarPersona(String id);
+    String borrarPersona(String id);
 
     PersonaOutputDTORecord buscarPorID(String id);
 

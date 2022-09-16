@@ -23,33 +23,21 @@ public class Controller {
         return personaService.anadirPersona(personaInputDTORecord);
     }
 
-    /*@PutMapping("id/{id}")
-    public ResponseEntity<PersonaOutputDTORecord> modificarPersonaID(@PathVariable int id, @RequestBody PersonaInputDTORecord personaInputDTORecord) throws Exception {
+    @PutMapping("id/{id}")
+    public ResponseEntity<PersonaOutputDTORecord> modificarPersonaID(@PathVariable String id, @RequestBody PersonaInputDTORecord personaInputDTORecord) {
         PersonaOutputDTORecord personaOutputDTORecord = personaService.modificarPersona(id, personaInputDTORecord);
-        if (personaOutputDTORecord == null) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
-        } else {
-            return new ResponseEntity<>(personaOutputDTORecord, HttpStatus.OK);
-        }
-    }*/
+        return new ResponseEntity<>(personaOutputDTORecord, HttpStatus.OK);
+    }
 
     @DeleteMapping("id/{id}")
     public ResponseEntity<String> borrarPersonaID(@PathVariable String id) {
-        if (personaService.borrarPersona(id)) {
-            return new ResponseEntity<>("USUARIO BORRADO", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("No existe ningún usuario con ese id", HttpStatus.NOT_ACCEPTABLE);
-        }
+        return new ResponseEntity<>(personaService.borrarPersona(id), HttpStatus.OK);
     }
 
     @GetMapping("id/{id}")
     public ResponseEntity<PersonaOutputDTORecord> getPersonaID(@PathVariable String id) {
         PersonaOutputDTORecord personaOutputDTORecord = personaService.buscarPorID(id);
-        if (personaOutputDTORecord == null) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(personaOutputDTORecord, HttpStatus.OK);
-        }
+        return new ResponseEntity<>(personaOutputDTORecord, HttpStatus.OK);
     }
 
     @GetMapping("user/{usuario}")
