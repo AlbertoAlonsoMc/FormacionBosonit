@@ -1,7 +1,6 @@
 package com.example.bosonit.DBA2.MongoDB.infraestructure.repository;
 
 import com.example.bosonit.DBA2.MongoDB.domain.Persona;
-import com.example.bosonit.DBA2.MongoDB.infraestructure.dtos.PersonaOutputDTORecord;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
