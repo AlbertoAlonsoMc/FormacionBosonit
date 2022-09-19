@@ -8,6 +8,4 @@ import java.util.List;
 
 @Repository
 public interface PersonaRepository extends MongoRepository<Persona, Integer> {
-    List<Persona> findByUsuario(String usuario);
-    Persona findById(String id);
 }

@@ -5,6 +5,9 @@ import com.example.bosonit.DBA2.MongoDB.infraestructure.dtos.PersonaInputDTOReco
 import com.example.bosonit.DBA2.MongoDB.infraestructure.dtos.PersonaOutputDTORecord;
 import com.example.bosonit.DBA2.MongoDB.infraestructure.repository.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,41 +19,46 @@ public class PersonaServiceImp implements PersonaService {
     @Autowired
     PersonaRepository personaRepo;
 
+    @Autowired
+    MongoTemplate mongoTemplate;
+
     @Override
     public PersonaOutputDTORecord anadirPersona(PersonaInputDTORecord personaInputDTORecord) {
         Persona persona = personaInputDTORecord.toPersona();
-        personaRepo.save(persona);
+        mongoTemplate.save(persona);
         return persona.toPersonaOutputDTORecord();
     }
 
     @Override
     public PersonaOutputDTORecord modificarPersona(String id, PersonaInputDTORecord personaInputDTORecord) {
         Persona persona = personaInputDTORecord.toPersona();
-        persona.setId(Optional.ofNullable(personaRepo.findById(id)).orElseThrow().getId());
-        personaRepo.save(persona);
+        persona.setId(Optional.ofNullable(mongoTemplate.findById(id, Persona.class)).orElseThrow().getId());
+        mongoTemplate.save(persona);
         return persona.toPersonaOutputDTORecord();
     }
 
     @Override
     public String borrarPersona(String id) {
-        personaRepo.delete(Optional.ofNullable(personaRepo.findById(id)).orElseThrow());
+        mongoTemplate.remove(Optional.ofNullable(mongoTemplate.findById(id, Persona.class)).orElseThrow());
         return "Usuario con id " + id + " borrado";
     }
 
 
     @Override
     public PersonaOutputDTORecord buscarPorID(String id) {
-        Persona persona = Optional.ofNullable(personaRepo.findById(id)).orElseThrow();
+        Persona persona;
+        persona = Optional.ofNullable(mongoTemplate.findById(id, Persona.class)).orElseThrow();
         return persona.toPersonaOutputDTORecord();
     }
 
     @Override
     public List<PersonaOutputDTORecord> buscarPorUsuario(String usuario) {
-        return Optional.ofNullable(personaRepo.findByUsuario(usuario)).orElseThrow().stream().map(Persona::toPersonaOutputDTORecord).toList();
+        return mongoTemplate.find(Query.query(Criteria.where("usuario").is(usuario)), Persona.class).stream().map(Persona::toPersonaOutputDTORecord).toList();
+        //return Optional.ofNullable(personaRepo.findByUsuario(usuario)).orElseThrow().stream().map(Persona::toPersonaOutputDTORecord).toList();
     }
 
     @Override
     public List<PersonaOutputDTORecord> mostrarTodos() {
-        return personaRepo.findAll().stream().map(Persona::toPersonaOutputDTORecord).toList();
+        return mongoTemplate.findAll(Persona.class).stream().map(Persona::toPersonaOutputDTORecord).toList();
     }
 }
