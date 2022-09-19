@@ -50,8 +50,7 @@ public class PersonaServiceImp implements PersonaService {
             return false;
         }
     }
-
-
+    
     @Override
     public PersonaOutputDTORecord buscarPorID(int id) {
         Persona persona;
