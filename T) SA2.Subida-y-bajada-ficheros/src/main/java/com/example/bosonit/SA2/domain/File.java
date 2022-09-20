@@ -20,6 +20,8 @@ public class File {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    private String originalName;
+
     private String categoria;
 
     private Date date;
@@ -27,6 +29,6 @@ public class File {
     private Long size;
 
     private FileOutputDto toFileOutputDto() {
-        return new FileOutputDto(id, categoria, date, size);
+        return new FileOutputDto(id, originalName, categoria, date, size);
     }
 }
