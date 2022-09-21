@@ -14,7 +14,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class File {
+public class FileEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -26,9 +26,9 @@ public class File {
 
     private Date date;
 
-    private Long size;
+    private Long bytes;
 
-    private FileOutputDto toFileOutputDto() {
-        return new FileOutputDto(id, originalName, categoria, date, size);
+    public FileOutputDto toFileOutputDto() {
+        return new FileOutputDto(id, originalName, categoria, date, bytes);
     }
 }
