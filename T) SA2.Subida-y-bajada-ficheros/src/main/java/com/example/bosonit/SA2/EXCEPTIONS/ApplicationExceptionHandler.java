@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.NoSuchFileException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -18,6 +19,12 @@ public class ApplicationExceptionHandler {
     @ExceptionHandler(FileAlreadyExistsException.class)
     public String archivoYaExiste() {
         return "El archivo que intenta subir ya existe en el directorio";
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NoSuchFileException.class)
+    public String archivoNoExiste() {
+        return "El archivo que intenta descargar no existe";
     }
 
 }

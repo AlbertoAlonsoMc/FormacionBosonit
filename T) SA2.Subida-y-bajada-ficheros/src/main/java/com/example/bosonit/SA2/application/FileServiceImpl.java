@@ -4,7 +4,8 @@ import com.example.bosonit.SA2.domain.FileEntity;
 import com.example.bosonit.SA2.infraestructure.dto.FileOutputDto;
 import com.example.bosonit.SA2.infraestructure.repository.FileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,7 +14,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -33,12 +33,20 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public Resource loadByName(String name) {
-        return null;
+    public ResponseEntity<String> downloadByName(String name, Path targetFolder) throws IOException {
+        if (targetFolder != null) {
+            Files.copy(rootFolder.resolve(name), targetFolder.resolve(name));
+            return ResponseEntity.status(HttpStatus.OK).body("Archivo descargado correctamente en " + targetFolder.toAbsolutePath());
+        } else {
+            Path rootFolderPath = Paths.get("");
+            Files.copy(rootFolder.resolve(name), rootFolderPath.resolve(name));
+            return ResponseEntity.status(HttpStatus.OK).body("Archivo descargado correctamente en " + rootFolderPath.toAbsolutePath());
+        }
+
     }
 
     @Override
-    public Resource loadById(Long id) {
-        return null;
+    public void downloadById(Long id) {
+
     }
 }
