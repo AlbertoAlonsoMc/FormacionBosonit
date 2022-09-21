@@ -13,5 +13,5 @@ public interface FileService {
 
     ResponseEntity<String> downloadByName(String name, Path targetFolder) throws IOException;
 
-    void downloadById(Long id);
+    ResponseEntity<String> downloadById(Long id, Path targetFolder) throws IOException;
 }

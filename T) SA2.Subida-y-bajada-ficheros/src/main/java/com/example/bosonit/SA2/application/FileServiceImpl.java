@@ -27,8 +27,8 @@ public class FileServiceImpl implements FileService {
     @Override
     public FileOutputDto save(MultipartFile file, String categoria) throws IOException {
         FileEntity fileEntity = new FileEntity(null, file.getOriginalFilename(), categoria, new Date(), file.getSize());
-        fileRepository.save(fileEntity);
         Files.copy(file.getInputStream(), rootFolder.resolve(Objects.requireNonNull(file.getOriginalFilename())));
+        fileRepository.save(fileEntity);
         return fileEntity.toFileOutputDto();
     }
 
@@ -42,11 +42,18 @@ public class FileServiceImpl implements FileService {
             Files.copy(rootFolder.resolve(name), rootFolderPath.resolve(name));
             return ResponseEntity.status(HttpStatus.OK).body("Archivo descargado correctamente en " + rootFolderPath.toAbsolutePath());
         }
-
     }
 
     @Override
-    public void downloadById(Long id) {
-
+    public ResponseEntity<String> downloadById(Long id, Path targetFolder) throws IOException {
+        FileEntity fileEntity = fileRepository.findById(id).orElseThrow();
+        if (targetFolder != null) {
+            Files.copy(rootFolder.resolve(fileEntity.getOriginalName()), targetFolder.resolve(fileEntity.getOriginalName()));
+            return ResponseEntity.status(HttpStatus.OK).body("Archivo descargado correctamente en " + targetFolder.toAbsolutePath());
+        } else {
+            Path rootFolderPath = Paths.get("");
+            Files.copy(rootFolder.resolve(fileEntity.getOriginalName()), rootFolderPath.resolve(fileEntity.getOriginalName()));
+            return ResponseEntity.status(HttpStatus.OK).body("Archivo descargado correctamente en " + rootFolderPath.toAbsolutePath());
+        }
     }
 }

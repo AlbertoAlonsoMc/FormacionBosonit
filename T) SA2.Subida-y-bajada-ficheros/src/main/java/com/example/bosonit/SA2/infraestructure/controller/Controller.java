@@ -25,9 +25,9 @@ public class Controller {
         return fileService.save(file, categoria);
     }
 
-    @GetMapping("download/id/{id}/setpath")
-    public FileOutputDto downloadFileId(@PathVariable Long id, @RequestParam(required = false) Path path) {
-        return null;
+    @GetMapping("download/id/{id}")
+    public ResponseEntity<String> downloadFileId(@PathVariable Long id, @RequestParam(required = false) Path path) throws IOException {
+        return fileService.downloadById(id, path);
     }
 
     @GetMapping("download/name/{name}")

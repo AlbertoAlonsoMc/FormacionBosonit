@@ -23,8 +23,13 @@ public class ApplicationExceptionHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NoSuchFileException.class)
-    public String archivoNoExiste() {
-        return "El archivo que intenta descargar no existe";
+    public String archivoNoExisteNombre() {
+        return "El archivo que intenta descargar con ese nombre no existe";
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NoSuchElementException.class)
+    public String archivoNoExisteId() {
+        return "El archivo que intenta descargar con ese ID no existe";
+    }
 }
