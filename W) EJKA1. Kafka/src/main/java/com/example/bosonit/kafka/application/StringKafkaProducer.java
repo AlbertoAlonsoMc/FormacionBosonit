@@ -16,7 +16,8 @@ public class StringKafkaProducer {
     private KafkaTemplate<String, String> kafkaTemplate;
 
     public void sendMessage(String message) {
-        LOGGER.info(String.format("Message sent: %s", message));
         kafkaTemplate.send("NombreDelTopic", message);
+
+        LOGGER.info(String.format("Message sent: %s", message));
     }
 }

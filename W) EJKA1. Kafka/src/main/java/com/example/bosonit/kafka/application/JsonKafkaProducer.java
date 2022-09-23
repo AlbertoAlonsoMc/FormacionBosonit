@@ -18,9 +18,9 @@ public class JsonKafkaProducer {
     private KafkaTemplate<String, User> kafkaTemplate;
 
     public void sendMessage(User user) {
-        LOGGER.info(String.format("Message sent: %s", user.toString()));
-
         Message<User> message = MessageBuilder.withPayload(user).setHeader(KafkaHeaders.TOPIC, "NombreDelTopic").build();
         kafkaTemplate.send(message);
+
+        LOGGER.info(String.format("Message sent: %s", user.toString()));
     }
 }
