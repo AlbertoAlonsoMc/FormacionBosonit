@@ -1,6 +1,6 @@
-package com.example.bosonit.kafka.controller;
+package com.example.bosonit.kafka.infraestructure.controller;
 
-import com.example.bosonit.kafka.kafka.KafkaProducer;
+import com.example.bosonit.kafka.application.StringKafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class MessageController {
 
     @Autowired
-    private KafkaProducer kafkaProducer;
+    private StringKafkaProducer stringKafkaProducer;
 
     @PostMapping("publish")
     public ResponseEntity<String> publish(@RequestParam("message") String message) {
-        kafkaProducer.sendMessage(message);
+        stringKafkaProducer.sendMessage(message);
         return ResponseEntity.status(HttpStatus.OK).body("Message sent to the topic");
     }
 }

@@ -1,4 +1,4 @@
-package com.example.bosonit.kafka.config;
+package com.example.bosonit.kafka.infraestructure.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
