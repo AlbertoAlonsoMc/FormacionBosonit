@@ -1,13 +1,12 @@
 package com.example.bosonit.EJTE1.SonarQube.domain;
 
 import com.example.bosonit.EJTE1.SonarQube.infraestructure.dtos.PersonaOutputDTORecord;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.Date;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PersonaTest {
 
@@ -48,6 +47,6 @@ class PersonaTest {
 
     @Test
     void convertPersonaToPersonaOutputDTORecord() {
-        Assertions.assertEquals(persona.toPersonaOutputDTORecord(), personaOutputDTORecord);
+        assertEquals(persona.toPersonaOutputDTORecord(), personaOutputDTORecord);
     }
 }
