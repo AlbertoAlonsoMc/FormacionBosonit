@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example.bosonit</groupId>
-	<artifactId>DBA2.MongoDB</artifactId>
+	<artifactId>EJTE1.SonarQube</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DBA2.MongoDB</name>
-	<description>CRUD con MongoDB</description>
+	<name>EJTE1.SonarQube</name>
+	<description>CRUD con MongoDB y Testing con JUnit y Mockito</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
