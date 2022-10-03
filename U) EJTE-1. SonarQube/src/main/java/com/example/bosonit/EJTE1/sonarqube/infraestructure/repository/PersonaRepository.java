@@ -1,6 +1,6 @@
-package com.example.bosonit.EJTE1.SonarQube.infraestructure.repository;
+package com.example.bosonit.ejte1.sonarqube.infraestructure.repository;
 
-import com.example.bosonit.EJTE1.SonarQube.domain.Persona;
+import com.example.bosonit.ejte1.sonarqube.domain.Persona;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

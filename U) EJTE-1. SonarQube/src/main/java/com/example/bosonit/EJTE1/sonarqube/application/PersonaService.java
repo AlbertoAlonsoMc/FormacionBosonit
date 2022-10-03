@@ -1,7 +1,7 @@
-package com.example.bosonit.EJTE1.SonarQube.application;
+package com.example.bosonit.ejte1.sonarqube.application;
 
-import com.example.bosonit.EJTE1.SonarQube.infraestructure.dtos.PersonaInputDTORecord;
-import com.example.bosonit.EJTE1.SonarQube.infraestructure.dtos.PersonaOutputDTORecord;
+import com.example.bosonit.ejte1.sonarqube.infraestructure.dtos.PersonaInputDTORecord;
+import com.example.bosonit.ejte1.sonarqube.infraestructure.dtos.PersonaOutputDTORecord;
 
 import java.util.List;
 

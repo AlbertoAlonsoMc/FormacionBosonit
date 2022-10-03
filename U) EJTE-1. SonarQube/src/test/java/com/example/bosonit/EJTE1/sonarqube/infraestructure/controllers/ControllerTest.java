@@ -1,9 +1,7 @@
-package com.example.bosonit.EJTE1.SonarQube.infraestructure.controllers;
+package com.example.bosonit.ejte1.sonarqube.infraestructure.controllers;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest {
 

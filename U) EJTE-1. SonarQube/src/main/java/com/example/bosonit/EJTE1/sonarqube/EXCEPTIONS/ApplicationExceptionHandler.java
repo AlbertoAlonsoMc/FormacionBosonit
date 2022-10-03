@@ -1,4 +1,4 @@
-package com.example.bosonit.EJTE1.SonarQube.EXCEPTIONS;
+package com.example.bosonit.ejte1.sonarqube.EXCEPTIONS;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;

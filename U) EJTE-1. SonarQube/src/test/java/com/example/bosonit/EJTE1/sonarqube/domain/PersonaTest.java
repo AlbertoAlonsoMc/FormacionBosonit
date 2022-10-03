@@ -1,6 +1,6 @@
-package com.example.bosonit.EJTE1.SonarQube.infraestructure.dtos;
+package com.example.bosonit.ejte1.sonarqube.domain;
 
-import com.example.bosonit.EJTE1.SonarQube.domain.Persona;
+import com.example.bosonit.ejte1.sonarqube.infraestructure.dtos.PersonaOutputDTORecord;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -8,13 +8,16 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PersonaInputDTORecordTest {
+class PersonaTest {
+
     static Persona persona;
-    static PersonaInputDTORecord personaInputDTORecord;
+    static PersonaOutputDTORecord personaOutputDTORecord;
 
     @BeforeAll
-    static void crearPersonaInputDTORecord() {
-        personaInputDTORecord = new PersonaInputDTORecord(
+    static void crearEntidades() {
+
+        persona = new Persona(
+                "1234",
                 "usuario",
                 "password",
                 "name",
@@ -27,7 +30,8 @@ class PersonaInputDTORecordTest {
                 "imagen_url",
                 new Date());
 
-        persona = new Persona(
+        personaOutputDTORecord = new PersonaOutputDTORecord(
+                "1234",
                 "usuario",
                 "password",
                 "name",
@@ -42,7 +46,7 @@ class PersonaInputDTORecordTest {
     }
 
     @Test
-    void convertPersonaInputDTORecordToPersona() {
-        assertEquals(personaInputDTORecord.toPersona(), persona);
+    void convertPersonaToPersonaOutputDTORecord() {
+        assertEquals(persona.toPersonaOutputDTORecord(), personaOutputDTORecord);
     }
 }

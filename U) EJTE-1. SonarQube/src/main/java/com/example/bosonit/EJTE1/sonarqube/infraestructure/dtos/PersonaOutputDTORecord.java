@@ -1,4 +1,4 @@
-package com.example.bosonit.EJTE1.SonarQube.infraestructure.dtos;
+package com.example.bosonit.ejte1.sonarqube.infraestructure.dtos;
 
 import java.util.Date;
 

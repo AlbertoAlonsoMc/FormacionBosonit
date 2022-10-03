@@ -1,8 +1,8 @@
-package com.example.bosonit.EJTE1.SonarQube.infraestructure.controllers;
+package com.example.bosonit.ejte1.sonarqube.infraestructure.controllers;
 
-import com.example.bosonit.EJTE1.SonarQube.application.PersonaService;
-import com.example.bosonit.EJTE1.SonarQube.infraestructure.dtos.PersonaInputDTORecord;
-import com.example.bosonit.EJTE1.SonarQube.infraestructure.dtos.PersonaOutputDTORecord;
+import com.example.bosonit.ejte1.sonarqube.application.PersonaService;
+import com.example.bosonit.ejte1.sonarqube.infraestructure.dtos.PersonaInputDTORecord;
+import com.example.bosonit.ejte1.sonarqube.infraestructure.dtos.PersonaOutputDTORecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

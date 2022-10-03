@@ -1,6 +1,6 @@
-package com.example.bosonit.EJTE1.SonarQube.infraestructure.dtos;
+package com.example.bosonit.ejte1.sonarqube.infraestructure.dtos;
 
-import com.example.bosonit.EJTE1.SonarQube.domain.Persona;
+import com.example.bosonit.ejte1.sonarqube.domain.Persona;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

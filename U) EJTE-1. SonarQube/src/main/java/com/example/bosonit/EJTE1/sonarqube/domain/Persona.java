@@ -1,6 +1,6 @@
-package com.example.bosonit.EJTE1.SonarQube.domain;
+package com.example.bosonit.ejte1.sonarqube.domain;
 
-import com.example.bosonit.EJTE1.SonarQube.infraestructure.dtos.PersonaOutputDTORecord;
+import com.example.bosonit.ejte1.sonarqube.infraestructure.dtos.PersonaOutputDTORecord;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

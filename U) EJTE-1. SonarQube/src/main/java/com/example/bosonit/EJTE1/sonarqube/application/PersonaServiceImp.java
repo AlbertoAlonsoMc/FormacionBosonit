@@ -1,9 +1,9 @@
-package com.example.bosonit.EJTE1.SonarQube.application;
+package com.example.bosonit.ejte1.sonarqube.application;
 
-import com.example.bosonit.EJTE1.SonarQube.domain.Persona;
-import com.example.bosonit.EJTE1.SonarQube.infraestructure.dtos.PersonaInputDTORecord;
-import com.example.bosonit.EJTE1.SonarQube.infraestructure.dtos.PersonaOutputDTORecord;
-import com.example.bosonit.EJTE1.SonarQube.infraestructure.repository.PersonaRepository;
+import com.example.bosonit.ejte1.sonarqube.domain.Persona;
+import com.example.bosonit.ejte1.sonarqube.infraestructure.dtos.PersonaInputDTORecord;
+import com.example.bosonit.ejte1.sonarqube.infraestructure.dtos.PersonaOutputDTORecord;
+import com.example.bosonit.ejte1.sonarqube.infraestructure.repository.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;

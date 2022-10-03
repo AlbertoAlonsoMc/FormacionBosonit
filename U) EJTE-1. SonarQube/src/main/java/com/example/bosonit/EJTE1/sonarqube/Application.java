@@ -1,4 +1,4 @@
-package com.example.bosonit.EJTE1.SonarQube;
+package com.example.bosonit.ejte1.sonarqube;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
