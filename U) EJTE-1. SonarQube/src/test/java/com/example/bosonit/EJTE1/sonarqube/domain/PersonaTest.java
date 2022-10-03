@@ -44,9 +44,7 @@ class PersonaTest {
                 "imagen_url",
                 new Date());
     }
-
-    //linea1
-    //linea2
+    
     @Test
     void convertPersonaToPersonaOutputDTORecord() {
         assertEquals(persona.toPersonaOutputDTORecord(), personaOutputDTORecord);
