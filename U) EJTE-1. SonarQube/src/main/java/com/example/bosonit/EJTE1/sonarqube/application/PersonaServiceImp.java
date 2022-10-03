@@ -3,7 +3,6 @@ package com.example.bosonit.ejte1.sonarqube.application;
 import com.example.bosonit.ejte1.sonarqube.domain.Persona;
 import com.example.bosonit.ejte1.sonarqube.infraestructure.dtos.PersonaInputDTORecord;
 import com.example.bosonit.ejte1.sonarqube.infraestructure.dtos.PersonaOutputDTORecord;
-import com.example.bosonit.ejte1.sonarqube.infraestructure.repository.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -15,9 +14,6 @@ import java.util.Optional;
 
 @Service
 public class PersonaServiceImp implements PersonaService {
-
-    @Autowired
-    PersonaRepository personaRepo;
 
     @Autowired
     MongoTemplate mongoTemplate;
@@ -54,7 +50,6 @@ public class PersonaServiceImp implements PersonaService {
     @Override
     public List<PersonaOutputDTORecord> buscarPorUsuario(String usuario) {
         return mongoTemplate.find(Query.query(Criteria.where("usuario").is(usuario)), Persona.class).stream().map(Persona::toPersonaOutputDTORecord).toList();
-        //return Optional.ofNullable(personaRepo.findByUsuario(usuario)).orElseThrow().stream().map(Persona::toPersonaOutputDTORecord).toList();
     }
 
     @Override
