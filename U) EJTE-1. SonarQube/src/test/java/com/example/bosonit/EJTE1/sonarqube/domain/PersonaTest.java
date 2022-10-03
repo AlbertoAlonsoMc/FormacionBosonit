@@ -45,6 +45,8 @@ class PersonaTest {
                 new Date());
     }
 
+    //linea1
+    //linea2
     @Test
     void convertPersonaToPersonaOutputDTORecord() {
         assertEquals(persona.toPersonaOutputDTORecord(), personaOutputDTORecord);
